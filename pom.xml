@@ -60,18 +60,17 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
+        </dependency>-->
+        <!--<dependency>
             <groupId>com.playtika.testcontainers</groupId>
-            <!-- testcontainers-spring-boot doesn't support mysql yet -->
             <artifactId>embedded-mariadb</artifactId>
             <version>${springboot-tc-starter.version}</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
 
         <dependency>
