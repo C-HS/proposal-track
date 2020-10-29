@@ -20,6 +20,7 @@ public class ProposalInterceptor  implements HandlerInterceptor {
                                             "X_USER_ACCESS", "X_ACCESS_SOURCE", "X_ACCESS_SOURCE_HIERARCHY");
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        log.info("The requested URL: {}", request.getServletPath());
         if (checkHeaderForEmptyORNullValues(request)){
             return true;
         }else{
