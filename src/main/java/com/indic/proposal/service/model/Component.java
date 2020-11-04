@@ -60,4 +60,9 @@ public class Component implements Serializable {
     @JoinColumn(name = "fk_proposal")
     private Proposal proposal;
 
+    public void addProject(Project project){
+        this.projects.add(project);
+        project.setComponent(this);
+    }
+
 }

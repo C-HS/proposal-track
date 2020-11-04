@@ -149,5 +149,13 @@ public class PlantInfo implements Serializable {
     @OneToOne
     @JoinColumn(name = "fk_project")
     private Project project;
+    public void addMedia(Media media){
+        this.media.add(media);
+        media.setPlantInfo(this);
+    }
+    public void addOtherULB(OtherULB otherULB){
+        this.otherULBs.add(otherULB);
+        otherULB.setPlantInfo(this);
+    }
 
 }

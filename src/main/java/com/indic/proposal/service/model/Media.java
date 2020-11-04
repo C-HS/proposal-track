@@ -36,4 +36,7 @@ public class Media implements Serializable {
     @ManyToOne
     @JoinColumn(name = "fk_plant_info")
     private PlantInfo plantInfo;
+    @ManyToOne
+    @JoinColumn(name = "fk_landfill_info")
+    private LandfillInfo landfillInfo;
 }

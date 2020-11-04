@@ -56,5 +56,9 @@ public class Project implements Serializable {
     @ManyToOne
     @JoinColumn(name = "fk_component")
     private Component component;
+    public void addSubType(Subtype subtype){
+        this.subtypes.add(subtype);
+        subtype.setProject(this);
+    }
 
 }

@@ -48,5 +48,9 @@ public class Subtype implements Serializable {
     @ManyToOne
     @JoinColumn(name = "fk_project")
     private Project project;
+    public void addDumpSite(Dumpsite dumpsite){
+        this.dumpsites.add(dumpsite);
+        dumpsite.setSubType(this);
+    }
 
 }

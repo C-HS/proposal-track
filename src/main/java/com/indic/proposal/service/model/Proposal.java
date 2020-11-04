@@ -51,4 +51,9 @@ public class Proposal implements Serializable {
     @JsonProperty("component")
     @OneToMany(mappedBy = "proposal")
     public List<Component> component = new ArrayList<>();
+
+    public void addComponent(Component component){
+        this.component.add(component);
+        component.setProposal(this);
+    }
 }

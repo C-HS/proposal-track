@@ -129,7 +129,7 @@ public class LandfillInfo implements Serializable {
     @JsonProperty("yearOfOperation")
     public String yearOfOperation;
     @JsonProperty("image")
-    @OneToMany
+    @OneToMany(mappedBy = "landfillInfo")
     public List<Media> media = new ArrayList<>();
     @JsonProperty("situated")
     public String situated;
@@ -142,4 +142,8 @@ public class LandfillInfo implements Serializable {
     @OneToOne
     @JoinColumn(name = "fk_subtype")
     private Subtype subType;
+    public void addMedia(Media media){
+        this.media.add(media);
+        media.setLandfillInfo(this);
+    }
 }
