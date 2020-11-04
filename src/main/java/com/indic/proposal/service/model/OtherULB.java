@@ -11,8 +11,9 @@ import java.io.Serializable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "url",
-    "media"
+    "id",
+    "clusterUlbName",
+    "ulbId"
 })
 @Getter
 @Setter
@@ -20,20 +21,21 @@ import java.io.Serializable;
 @AllArgsConstructor
 @ToString
 @Entity
-public class Media implements Serializable {
+public class OtherULB implements Serializable {
 
-    private static final long serialVersionUID = -1710746659892856271L;
+    private static final long serialVersionUID = 9045278521591480057L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("mediaId")
-    public Long mediaId;
-    @JsonProperty("mediaUrl")
-    public String mediaUrl;
-    @JsonProperty("mediaName")
-    public String mediaName;
-    @JsonProperty("mediaType")
-    public String mediaType;
+    @JsonProperty("id")
+    public String id;
+    @JsonProperty("clusterUlbName")
+    public String clusterUlbName;
+    @JsonProperty("ulbId")
+    public String ulbId;
+    @JsonProperty("distanceFromTarget")
+    public Long distanceFromTarget;
     @ManyToOne
     @JoinColumn(name = "fk_plant_info")
     private PlantInfo plantInfo;
+
 }
