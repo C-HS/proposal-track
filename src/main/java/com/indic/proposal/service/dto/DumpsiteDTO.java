@@ -18,6 +18,6 @@ public class DumpsiteDTO implements Serializable {
     public Integer area;
     public Integer height;
     public Integer yearOfStart;
-    private SubtypeDTO subType;
+//    private SubtypeDTO subType;
 
 }

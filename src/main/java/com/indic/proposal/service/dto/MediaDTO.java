@@ -17,6 +17,6 @@ public class MediaDTO implements Serializable {
     public String mediaUrl;
     public String mediaName;
     public String mediaType;
-    private PlantInfoDTO plantInfoDTO;
-    private LandfillInfoDTO landfillInfoDTO;
+//    private PlantInfoDTO plantInfoDTO;
+//    private LandfillInfoDTO landfillInfoDTO;
 }

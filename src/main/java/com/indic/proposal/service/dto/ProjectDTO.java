@@ -23,6 +23,6 @@ public class ProjectDTO implements Serializable {
     public String jsonData;
     public PlantInfoDTO plantInfoDTO;
     public List<SubtypeDTO> subtypeDTOS = new ArrayList<>();
-    private ComponentDTO componentDTO;
+//    private ComponentDTO componentDTO;
 
 }

@@ -25,5 +25,5 @@ public class SubtypeDTO implements Serializable {
     public String attachmentDoc;
     public List<DumpsiteDTO> dumpsiteDTOS = new ArrayList<>();
     public LandfillInfoDTO landfillInfoDTO;
-    public ProjectDTO projectDTO;
+//    public ProjectDTO projectDTO;
 }

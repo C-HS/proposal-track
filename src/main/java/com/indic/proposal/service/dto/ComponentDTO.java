@@ -28,5 +28,5 @@ public class ComponentDTO implements Serializable {
     public String otherShare;
     public String actionPlanDocument;
     public List<ProjectDTO> projectsDTO = new ArrayList<>();
-    public ProposalDTO proposalDTO;
+//    public ProposalDTO proposalDTO;
 }

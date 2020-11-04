@@ -57,6 +57,6 @@ public class PlantInfoDTO implements Serializable {
     public String dPRFile;
     public String actualStartDate;
     public String sanctionId;
-    public ProjectDTO projectDTO;
+//    public ProjectDTO projectDTO;
 
 }

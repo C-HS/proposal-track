@@ -17,6 +17,6 @@ public class OtherULBDTO implements Serializable {
     public String clusterUlbName;
     public String ulbId;
     public Long distanceFromTarget;
-    private PlantInfoDTO plantInfoDTO;
+//    private PlantInfoDTO plantInfoDTO;
 
 }

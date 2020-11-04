@@ -52,5 +52,5 @@ public class LandfillInfoDTO implements Serializable {
     public String latitude;
     public String longitude;
     public String wardName;
-    private SubtypeDTO subType;
+//    private SubtypeDTO subType;
 }
