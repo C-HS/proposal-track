@@ -66,7 +66,12 @@
             <artifactId>jackson-core</artifactId>
             <version>2.11.3</version>
         </dependency>
-
+        <!-- ModelMapper -->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>2.3.5</version>
+        </dependency>
         <!--<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
