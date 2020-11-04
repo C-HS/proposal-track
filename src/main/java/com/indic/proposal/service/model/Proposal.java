@@ -49,7 +49,7 @@ public class Proposal implements Serializable {
     @JsonProperty("totalOtherShare")
     public String totalOtherShare;
     @JsonProperty("component")
-    @OneToMany(mappedBy = "proposal")
+    @OneToMany(mappedBy = "proposal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Component> component = new ArrayList<>();
 
     public void addComponent(Component component){
