@@ -1,0 +1,190 @@
+{
+  "proposalId": "",
+  "proposalDocument": "",
+  "shpcDocument": "",
+  "totalProposalCost": "150000",
+  "totalCentralShare": "1200",
+  "totalStateShare": "11000",
+  "totalOtherShare": "1000",
+  "component": [
+    {
+      "componentTypeId": "",
+      "componentType": "IHHL",
+      "unit": "5",
+      "projectCost": "124500",
+      "installment": "Both",
+      "firstInstallment": "2445444",
+      "stateShare": "20000",
+      "otherShare": "3400",
+      "actionPlanDocument": null
+    },
+    {
+      "componentTypeId": null,
+      "componentType": "SWM",
+      "unit": "NA",
+      "projectCost": "120000",
+      "installment": "First",
+      "firstInstallment": "100000",
+      "stateShare": "500000",
+      "otherShare": "50000",
+      "actionPlanDocument": null,
+      "projects": [
+        {
+          "projectTypeId": "",
+          "projectType": "Collection & Transportation",
+          "projectCost": "1200",
+          "centralShare": "2000",
+          "stateShare": "2000",
+          "otherShare": "2000",
+          "jsonData": {}
+        },
+        {
+          "projectTypeId": "",
+          "projectType": "Processing Plants",
+          "projectCost": "1200",
+          "centralShare": "2000",
+          "stateShare": "2000",
+          "otherShare": "2000",
+          "plantInfo": {
+            "stateId": 22,
+            "districtId": 401,
+            "ulbId": 801927,
+            "stateName": "CHHATTISGARH",
+            "districtName": "SARGUJA",
+            "ulbName": "AMBIKAPUR",
+            "misPlantId": "001",
+            "facilityTypeId": null,
+            "facilityTypeName": null,
+            "facilityLabel": null,
+            "facilityId": 0,
+            "wardId": 17516,
+            "name": "Demo",
+            "plantTypeId": "238ebfa8-5d00-437f-acd0-050d9d252e68",
+            "plantType": "Material Recovery Facility (MRF)",
+            "subCategoryId": null,
+            "address": "noida",
+            "landmark": null,
+            "pinCode": null,
+            "latitude": null,
+            "longitude": null,
+            "projectCost": null,
+            "fundedBy": null,
+            "technology": null,
+            "isIntegrated": false,
+            "isCentralised": false,
+            "ownedBy": null,
+            "media": [],
+            "otherULBs": [
+              {
+                "id": null,
+                "clusterUlbName": null,
+                "ulbId": null
+              }
+            ],
+            "plantStatus": "Approved by SHPC / Competent Authority",
+            "statusDetail": {},
+            "operatedBy": null,
+            "ownedByPrivate": null,
+            "operatedByPrivate": null,
+            "inputs": [],
+            "wardName": "BHAGWANPUR WARD",
+            "DPRFile": "",
+            "actualStartDate": null,
+            "sanctionId": null
+          }
+        },
+        {
+          "projectTypeId": "",
+          "projectType": "Disposal",
+          "projectCost": "1200",
+          "centralShare": "2000",
+          "stateShare": "2000",
+          "otherShare": "2000",
+          "subtypes": [
+            {
+              "projectSubTypeId": "",
+              "projectSubType": "Other",
+              "projectBrief": "",
+              "attachmentDoc": ""
+            },
+            {
+              "projectSubTypeId": "",
+              "projectSubType": "Dumpsite Remediation",
+              "dumpsites": [
+                {
+                  "dumpSiteId": "eefbd297-1548-4e17-943e-9d0a80c494bd",
+                  "quantity": 4,
+                  "area": 120,
+                  "height": 12,
+                  "yearOfStart": 2020
+                },
+                {
+                  "dumpSiteId": "1c185afd-59c3-4625-b11e-a328d1f4d0ba",
+                  "quantity": 4,
+                  "area": 120,
+                  "height": 12,
+                  "yearOfStart": 2020
+                }
+              ]
+            },
+            {
+              "projectSubTypeId": "",
+              "projectSubType": "Landfill",
+              "landfillInfo": {
+                "stateId": 22,
+                "districtId": 401,
+                "ulbId": 801927,
+                "stateName": "CHHATTISGARH",
+                "districtName": "SARGUJA",
+                "ulbName": "AMBIKAPUR",
+                "wardId": 29990,
+                "landFillMisId": "Test1",
+                "landfillName": "Landfill ",
+                "address": "Test2",
+                "landmark": "Test 2",
+                "regionalSlf": null,
+                "otherULBs": [
+                  {
+                    "id": 19,
+                    "ulbId": null,
+                    "ulb": "MISRIKH-CUM-NEEMSAR (NPP)",
+                    "landfillDistance": "0"
+                  }
+                ],
+                "isNonPermeable": true,
+                "isMechanismLaeachate": false,
+                "isLocatedhill": false,
+                "nearestWaterBody": "6",
+                "isDailyCovering": false,
+                "isQualityMonotoring": false,
+                "isLandFillShared": true,
+                "wasteInspectionArea": "0",
+                "temporaryWasteStorage": "1",
+                "status": "Under Construction",
+                "dateOfStart": "2020-08-03T18:30:00.000Z",
+                "area": "6777",
+                "heightOfDesigned": "57",
+                "heightOfCurrent": "56.0",
+                "nearestHabitation": "12",
+                "avgWasteSlf": "567",
+                "quantityDisposed": 12112,
+                "projectCost": 554,
+                "yearOfOperation": "677",
+                "image": [
+                  {
+                    "url": "",
+                    "media": ""
+                  }
+                ],
+                "situated": null,
+                "latitude": 21,
+                "longitude": 12,
+                "wardName": "MAHARANA PRATAP WARD"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
