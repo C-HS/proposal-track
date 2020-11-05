@@ -4,6 +4,8 @@ package com.indic.proposal.service.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -54,9 +56,10 @@ public class Component implements Serializable {
     @JsonProperty("actionPlanDocument")
     public String actionPlanDocument;
     @JsonProperty("projects")
-    @OneToMany(mappedBy = "component")
+    @OneToMany(mappedBy = "component", fetch = FetchType.LAZY)
     public List<Project> projects = new ArrayList<>();
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "fk_proposal")
     private Proposal proposal;
 

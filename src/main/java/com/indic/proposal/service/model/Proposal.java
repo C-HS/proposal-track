@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
@@ -48,12 +49,23 @@ public class Proposal implements Serializable {
     public String totalStateShare;
     @JsonProperty("totalOtherShare")
     public String totalOtherShare;
+    @JsonProperty("proposalStatus")
+    public String proposalStatus;
     @JsonProperty("component")
-    @OneToMany(mappedBy = "proposal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public List<Component> component = new ArrayList<>();
+    @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    public List<Component> componentList = new ArrayList<>();
 
     public void addComponent(Component component){
-        this.component.add(component);
+        if (component == null) {
+            return;
+        }
         component.setProposal(this);
+        if(this.componentList == null){
+            this.componentList = new ArrayList<>();
+            this.componentList.add(component);
+        }else if (!this.componentList.contains(component)){
+            this.componentList.add(component);
+        }
     }
 }

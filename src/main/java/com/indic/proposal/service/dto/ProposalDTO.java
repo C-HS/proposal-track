@@ -26,5 +26,6 @@ public class ProposalDTO implements Serializable {
     public String totalCentralShare;
     public String totalStateShare;
     public String totalOtherShare;
+    public String proposalStatus;
     public List<ComponentDTO> componentDTO = new ArrayList<>();
 }

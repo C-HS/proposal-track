@@ -21,12 +21,13 @@ public class ProposalInterceptor  implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("The requested URL: {}", request.getServletPath());
-        if (checkHeaderForEmptyORNullValues(request)){
+        /*if (checkHeaderForEmptyORNullValues(request)){
             return true;
         }else{
             response.setStatus(502);
             return false;
-        }
+        }*/
+        return true;
     }
 
     @Override
