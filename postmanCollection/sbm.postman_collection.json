@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "e9329ba8-620c-40ee-8734-f8d3bc035971",
+		"name": "sbm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddProposal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"proposalDocument\": \"Document Lorem\",\r\n\t\"shpcDocument\": \"Document  Ipsum\",\r\n\t\"totalProposalCost\": \"150000\",\r\n\t\"totalCentralShare\": \"1200\",\r\n\t\"totalStateShare\": \"11000\",\r\n\t\"totalOtherShare\": \"1000\",\r\n\t\"proposalStatus\": \"Draft\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/addProposal",
+					"protocol": "https",
+					"host": [
+						"proposal-track",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"proposal",
+						"addProposal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddComponent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"componentList\": [{\r\n\t\t\t\"componentType\": \"IHHL\",\r\n\t\t\t\"unit\": \"5\",\r\n\t\t\t\"projectCost\": \"124500\",\r\n\t\t\t\"installment\": \"Both\",\r\n\t\t\t\"firstInstallment\": \"2445444\",\r\n\t\t\t\"stateShare\": \"20000\",\r\n\t\t\t\"otherShare\": \"3400\",\r\n\t\t\t\"actionPlanDocument\": \"Action Document 1\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"componentType\": \"CT\",\r\n\t\t\t\"unit\": \"5\",\r\n\t\t\t\"projectCost\": \"124500\",\r\n\t\t\t\"installment\": \"Both\",\r\n\t\t\t\"firstInstallment\": \"2445444\",\r\n\t\t\t\"stateShare\": \"20000\",\r\n\t\t\t\"otherShare\": \"3400\",\r\n\t\t\t\"actionPlanDocument\": \"Action Document 2\"\r\n\t\t}\r\n\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/addComponents/1",
+					"protocol": "https",
+					"host": [
+						"proposal-track",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"proposal",
+						"addComponents",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllProposals",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://proposal-track.herokuapp.com/api/proposal",
+					"protocol": "https",
+					"host": [
+						"proposal-track",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"proposal"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
