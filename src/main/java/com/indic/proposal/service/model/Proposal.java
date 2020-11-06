@@ -3,7 +3,9 @@ package com.indic.proposal.service.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.*;
@@ -53,18 +55,13 @@ public class Proposal implements Serializable {
     @JsonProperty("component")
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    public List<Component> componentList = new ArrayList<>();
+    public Set<Component> componentList = new HashSet<>();
 
     public void addComponent(Component component){
         if (component == null) {
             return;
         }
         component.setProposal(this);
-        if(this.componentList == null){
-            this.componentList = new ArrayList<>();
-            this.componentList.add(component);
-        }else if (!this.componentList.contains(component)){
-            this.componentList.add(component);
-        }
+        this.componentList.add(component);
     }
 }

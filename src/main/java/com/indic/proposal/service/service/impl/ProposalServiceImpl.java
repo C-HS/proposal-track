@@ -39,8 +39,9 @@ public class ProposalServiceImpl implements ProposalService {
 
     @Override
     public Proposal updateProposal(long proposalId, Proposal proposal) {
-        Proposal prop = this.fetchProposalById(proposalId);
-        prop = proposal;
-        return proposalRepository.save(prop);
+        /*Proposal prop = this.fetchProposalById(proposalId);
+        prop = proposal;*/
+        proposal.setProposalId(proposalId);
+        return proposalRepository.save(proposal);
     }
 }

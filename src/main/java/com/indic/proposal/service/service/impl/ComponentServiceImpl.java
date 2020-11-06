@@ -36,8 +36,8 @@ public class ComponentServiceImpl implements ComponentService {
 
     @Override
     public Component updateComponent(long componentId, Component component) {
-        Component compo = this.fetchComponentById(componentId);
-        compo = component;
-        return componentRepository.save(compo);
+        component.setComponentTypeId(componentId);
+        component.setProposal(this.fetchComponentById(componentId).getProposal());
+        return componentRepository.save(component);
     }
 }

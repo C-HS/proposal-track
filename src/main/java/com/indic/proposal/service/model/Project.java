@@ -56,6 +56,7 @@ public class Project implements Serializable {
     @ManyToOne
     @JoinColumn(name = "fk_component")
     @JsonBackReference
+    @ToString.Exclude
     private Component component;
     public void addSubType(Subtype subtype){
         if (subtype == null) {

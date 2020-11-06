@@ -1,34 +1,41 @@
 package com.indic.proposal.service.service.impl;
 
-import com.indic.proposal.service.dto.ProjectDTO;
 import com.indic.proposal.service.model.Project;
+import com.indic.proposal.service.repository.ProjectRepository;
 import com.indic.proposal.service.service.ProjectService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@RequiredArgsConstructor
+@Service
 public class ProjectServiceImpl implements ProjectService {
+    private final ProjectRepository projectRepository;
+
     @Override
-    public ProjectDTO addProject(Project project) {
-        return null;
+    public Project addProject(Project project) {
+        return projectRepository.save(project);
     }
 
     @Override
-    public ProjectDTO fetchProjectById(long projectId) {
-        return null;
+    public Project fetchProjectById(long projectId) {
+        return projectRepository.findById(projectId).get();
     }
 
     @Override
-    public List<ProjectDTO> fetchAllProject() {
-        return null;
+    public List<Project> fetchAllProject() {
+        return projectRepository.findAll();
     }
 
     @Override
     public void deleteProjectById(long projectId) {
-
+        projectRepository.deleteById(projectId);
     }
 
     @Override
-    public ProjectDTO updateProject(long projectId, Project media) {
-        return null;
+    public Project updateProject(long projectId, Project project) {
+        Project proj = this.fetchProjectById(projectId);
+        proj = project;
+        return projectRepository.save(proj);
     }
 }
