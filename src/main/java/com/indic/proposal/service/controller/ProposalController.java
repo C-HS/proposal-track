@@ -9,6 +9,8 @@ import com.indic.proposal.service.service.ProposalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration;
+import org.modelmapper.convention.NamingConventions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +28,19 @@ public class ProposalController {
     private final ModelMapper modelMapper;
     @GetMapping
     public ResponseEntity<List<Proposal>> getAllProposal(){
-        return ResponseEntity.ok(proposalService.fetchAllProposal());
+        modelMapper.getConfiguration()
+                .setFieldMatchingEnabled(true)
+                .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE)
+                .setSourceNamingConvention(NamingConventions.JAVABEANS_MUTATOR);
+        List<Proposal> proposal = proposalService.fetchAllProposal();
+        List<ProposalDTO> propDTO = proposal
+                .stream()
+                .map(e ->modelMapper.map(e,ProposalDTO.class))
+                .collect(Collectors.toList());
+        propDTO
+                .stream()
+                .forEach(e -> log.info("Proposal: {}", e));
+        return ResponseEntity.ok(proposal);
     }
     @PostMapping(value = "/addProposal", consumes = "application/json", produces = "application/json")
     public ResponseEntity<ProposalDTO> addProposal(@RequestBody Proposal proposal){

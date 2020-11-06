@@ -4,9 +4,8 @@ package com.indic.proposal.service.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -41,16 +40,26 @@ public class Subtype implements Serializable {
     public String attachmentDoc;
     @JsonProperty("dumpsites")
     @OneToMany(mappedBy = "subType")
-    public List<Dumpsite> dumpsites = new ArrayList<>();
+    @JsonManagedReference
+    public List<Dumpsite> dumpsiteList = new ArrayList<>();
     @JsonProperty("landfillInfo")
     @OneToOne(mappedBy = "subType")
     public LandfillInfo landfillInfo;
     @ManyToOne
     @JoinColumn(name = "fk_project")
+    @JsonBackReference
     private Project project;
     public void addDumpSite(Dumpsite dumpsite){
-        this.dumpsites.add(dumpsite);
+        if (dumpsite == null) {
+            return;
+        }
         dumpsite.setSubType(this);
+        if(this.dumpsiteList == null){
+            this.dumpsiteList = new ArrayList<>();
+            this.dumpsiteList.add(dumpsite);
+        }else if(!this.dumpsiteList.contains(dumpsite)){
+            this.dumpsiteList.add(dumpsite);
+        }
     }
 
 }

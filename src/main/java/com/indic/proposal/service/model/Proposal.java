@@ -4,10 +4,8 @@ package com.indic.proposal.service.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.hibernate.metamodel.model.domain.IdentifiableDomainType;
 
@@ -36,6 +34,7 @@ public class Proposal implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("proposalId")
+    @JsonIgnore
     public Long proposalId;
     @JsonProperty("proposalDocument")
     public String proposalDocument;

@@ -1,10 +1,7 @@
 
 package com.indic.proposal.service.model;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -41,6 +38,7 @@ public class Dumpsite implements Serializable {
     public Integer yearOfStart;
     @ManyToOne
     @JoinColumn(name = "fk_subtype")
+    @JsonBackReference
     private Subtype subType;
 
 }

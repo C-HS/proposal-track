@@ -4,9 +4,8 @@ package com.indic.proposal.service.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -52,13 +51,23 @@ public class Project implements Serializable {
     public PlantInfo plantInfo;
     @JsonProperty("subtypes")
     @OneToMany(mappedBy = "project")
-    public List<Subtype> subtypes = new ArrayList<>();
+    @JsonManagedReference
+    public List<Subtype> subtypesList = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "fk_component")
+    @JsonBackReference
     private Component component;
     public void addSubType(Subtype subtype){
-        this.subtypes.add(subtype);
+        if (subtype == null) {
+            return;
+        }
         subtype.setProject(this);
+        if(this.subtypesList == null){
+            this.subtypesList = new ArrayList<>();
+            this.subtypesList.add(subtype);
+        }else if(!this.subtypesList.contains(subtype)){
+            this.subtypesList.add(subtype);
+        }
     }
 
 }

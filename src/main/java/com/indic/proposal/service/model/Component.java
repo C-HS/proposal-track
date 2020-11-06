@@ -5,10 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.omg.CORBA.IdentifierHelper;
 
@@ -57,15 +54,24 @@ public class Component implements Serializable {
     public String actionPlanDocument;
     @JsonProperty("projects")
     @OneToMany(mappedBy = "component", fetch = FetchType.LAZY)
-    public List<Project> projects = new ArrayList<>();
+    @JsonManagedReference
+    public List<Project> projectList = new ArrayList<>();
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "fk_proposal")
     private Proposal proposal;
 
     public void addProject(Project project){
-        this.projects.add(project);
+        if (project == null) {
+            return;
+        }
         project.setComponent(this);
+        if(this.projectList == null){
+            this.projectList = new ArrayList<>();
+            this.projectList.add(project);
+        }else if(!this.projectList.contains(project)){
+            this.projectList.add(project);
+        }
     }
 
 }

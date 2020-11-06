@@ -1,0 +1,52 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------
+								[Creation of Proposal]
+----------------------------------------------------------------------------------------------------------------------------------------------------
+URL: http://localhost:8080/api/proposal/addProposal
+Method: POST
+Request Body: 
+{
+  "proposalDocument": "Document Lorem",
+  "shpcDocument": "Document  Ipsum",
+  "totalProposalCost": "150000",
+  "totalCentralShare": "1200",
+  "totalStateShare": "11000",
+  "totalOtherShare": "1000",
+	"proposalStatus": "Draft"
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------
+						       [Creation of Component related to Proposal]
+----------------------------------------------------------------------------------------------------------------------------------------------------
+URL: http://localhost:8080/api/proposal/addComponents/2
+Method: POST
+Request Body: 
+{
+  "componentList": [
+    {
+      "componentType": "IHHL",
+      "unit": "5",
+      "projectCost": "124500",
+      "installment": "Both",
+      "firstInstallment": "2445444",
+      "stateShare": "20000",
+      "otherShare": "3400",
+      "actionPlanDocument": "Action Document 1"
+    },
+    {
+      "componentType": "CT",
+      "unit": "5",
+      "projectCost": "124500",
+      "installment": "Both",
+      "firstInstallment": "2445444",
+      "stateShare": "20000",
+      "otherShare": "3400",
+      "actionPlanDocument": "Action Document 2"
+    }
+   ]
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+								[Getting The Proposal]
+----------------------------------------------------------------------------------------------------------------------------------------------------
+URL: http://localhost:8080/api/proposal
+Method: GET
+Request Body: NA
