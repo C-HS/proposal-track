@@ -14,7 +14,7 @@ import org.omg.CORBA.IdentifierHelper;
 import javax.persistence.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+/*@JsonPropertyOrder({
     "componentTypeId",
     "componentType",
     "unit",
@@ -25,7 +25,7 @@ import javax.persistence.*;
     "otherShare",
     "actionPlanDocument",
     "projects"
-})
+})*/
 @Getter
 @Setter
 @AllArgsConstructor
@@ -57,6 +57,7 @@ public class Component implements Serializable {
     @JsonProperty("projects")
     @OneToMany(mappedBy = "component", fetch = FetchType.LAZY)
     @JsonManagedReference
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public Set<Project> projectList = new HashSet<>();
     @ManyToOne
     @JsonBackReference

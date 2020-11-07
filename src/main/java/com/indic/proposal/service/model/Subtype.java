@@ -3,7 +3,9 @@ package com.indic.proposal.service.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.*;
@@ -11,14 +13,14 @@ import lombok.*;
 import javax.persistence.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+/*@JsonPropertyOrder({
     "projectSubTypeId",
     "projectSubType",
     "projectBrief",
     "attachmentDoc",
     "dumpsites",
     "landfillInfo"
-})
+})*/
 @Getter
 @Setter
 @NoArgsConstructor
@@ -41,25 +43,21 @@ public class Subtype implements Serializable {
     @JsonProperty("dumpsites")
     @OneToMany(mappedBy = "subType")
     @JsonManagedReference
-    public List<Dumpsite> dumpsiteList = new ArrayList<>();
+    public Set<Dumpsite> dumpsiteList = new HashSet<>();
     @JsonProperty("landfillInfo")
     @OneToOne(mappedBy = "subType")
     public LandfillInfo landfillInfo;
     @ManyToOne
     @JoinColumn(name = "fk_project")
     @JsonBackReference
+    @ToString.Exclude
     private Project project;
     public void addDumpSite(Dumpsite dumpsite){
         if (dumpsite == null) {
             return;
         }
         dumpsite.setSubType(this);
-        if(this.dumpsiteList == null){
-            this.dumpsiteList = new ArrayList<>();
-            this.dumpsiteList.add(dumpsite);
-        }else if(!this.dumpsiteList.contains(dumpsite)){
-            this.dumpsiteList.add(dumpsite);
-        }
+        this.dumpsiteList.add(dumpsite);
     }
 
 }

@@ -1,12 +1,15 @@
 package com.indic.proposal.service.controller;
 
 import com.indic.proposal.service.model.Component;
+import com.indic.proposal.service.model.Project;
 import com.indic.proposal.service.model.Proposal;
 import com.indic.proposal.service.request.ComponentList;
 import com.indic.proposal.service.request.ProjectList;
+import com.indic.proposal.service.request.SubtypeList;
 import com.indic.proposal.service.service.ComponentService;
 import com.indic.proposal.service.service.ProjectService;
 import com.indic.proposal.service.service.ProposalService;
+import com.indic.proposal.service.service.SubTypeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -24,6 +27,7 @@ public class ProposalController {
     private final ProposalService proposalService;
     private final ComponentService componentService;
     private final ProjectService projectService;
+    private final SubTypeService subTypeService;
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -37,27 +41,30 @@ public class ProposalController {
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
     @PostMapping(value = "/addComponents/{proposalId}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<HttpStatus> addComponents(@PathVariable long proposalId,
-                                                    @RequestBody ComponentList componentList){
+    public ResponseEntity<HttpStatus> addComponents(@PathVariable long proposalId, @RequestBody ComponentList componentList){
         Proposal prop = proposalService.fetchProposalById(proposalId);
-        componentList.getComponentList()
-                .stream()
-                .forEach(compo -> {
-                    prop.addComponent(compo);
-                });
+        componentList.getComponentList().stream().forEach(prop::addComponent);
         proposalService.updateProposal(proposalId, prop);
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
     @PostMapping(value = "/addProject/{componentId}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<HttpStatus> addProjecct(@PathVariable long componentId,
-                                                  @RequestBody ProjectList projectList){
-        Proposal prop = componentService.fetchComponentById(componentId).getProposal();
+    public ResponseEntity<HttpStatus> addProjecct(@PathVariable long componentId, @RequestBody ProjectList projectList){
         Component comp = componentService.fetchComponentById(componentId);
-        projectList.getProjectList()
+        projectList.getProjectList().stream().forEach(project -> {
+                                                            comp.addProject(project);
+                                                            projectService.addProject(project);
+                                                            }
+                                                    );
+        return ResponseEntity.ok(HttpStatus.CREATED);
+    }
+    @PostMapping(value = "/addSubtype/{projectId}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<HttpStatus> addSubtype(@PathVariable long projectId, @RequestBody SubtypeList subtypeList){
+        Project project = projectService.fetchProjectById(projectId);
+        subtypeList.getSubtypeList()
                 .stream()
-                .forEach(project -> {
-                    comp.addProject(project);
-                    projectService.addProject(project);
+                .forEach(subtype -> {
+                    project.addSubType(subtype);
+                    subTypeService.addSubtype(subtype);
                 });
         return ResponseEntity.ok(HttpStatus.CREATED);
     }

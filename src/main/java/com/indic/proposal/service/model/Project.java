@@ -3,15 +3,18 @@ package com.indic.proposal.service.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.*;
+import springfox.documentation.spring.web.json.Json;
 
 import javax.persistence.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+/*@JsonPropertyOrder({
     "projectTypeId",
     "projectType",
     "projectCost",
@@ -21,7 +24,7 @@ import javax.persistence.*;
     "jsonData",
     "plantInfo",
     "subtypes"
-})
+})*/
 @Getter
 @Setter
 @NoArgsConstructor
@@ -52,7 +55,8 @@ public class Project implements Serializable {
     @JsonProperty("subtypes")
     @OneToMany(mappedBy = "project")
     @JsonManagedReference
-    public List<Subtype> subtypesList = new ArrayList<>();
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    public Set<Subtype> subtypesList = new HashSet<>();
     @ManyToOne
     @JoinColumn(name = "fk_component")
     @JsonBackReference
@@ -63,12 +67,7 @@ public class Project implements Serializable {
             return;
         }
         subtype.setProject(this);
-        if(this.subtypesList == null){
-            this.subtypesList = new ArrayList<>();
-            this.subtypesList.add(subtype);
-        }else if(!this.subtypesList.contains(subtype)){
-            this.subtypesList.add(subtype);
-        }
+        this.subtypesList.add(subtype);
     }
 
 }

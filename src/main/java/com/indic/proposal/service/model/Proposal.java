@@ -14,7 +14,7 @@ import org.hibernate.metamodel.model.domain.IdentifiableDomainType;
 import javax.persistence.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+/*@JsonPropertyOrder({
     "proposalId",
     "proposalDocument",
     "shpcDocument",
@@ -23,7 +23,7 @@ import javax.persistence.*;
     "totalStateShare",
     "totalOtherShare",
     "component"
-})
+})*/
 @Getter
 @Setter
 @NoArgsConstructor
