@@ -2,6 +2,7 @@ package com.indic.proposal.service.service.impl;
 
 import com.indic.proposal.service.model.Component;
 import com.indic.proposal.service.repository.ComponentRepository;
+import com.indic.proposal.service.request.ComponentList;
 import com.indic.proposal.service.service.ComponentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,11 @@ public class ComponentServiceImpl implements ComponentService {
     @Override
     public Component addComponent(Component component) {
         return componentRepository.save(component);
+    }
+
+    @Override
+    public List<Component> addComponentList(Iterable<Component> componentList) {
+        return componentRepository.saveAll(componentList);
     }
 
     @Override

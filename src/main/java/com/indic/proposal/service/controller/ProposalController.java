@@ -44,6 +44,7 @@ public class ProposalController {
     public ResponseEntity<HttpStatus> addComponents(@PathVariable long proposalId, @RequestBody ComponentList componentList){
         Proposal prop = proposalService.fetchProposalById(proposalId);
         componentList.getComponentList().stream().forEach(prop::addComponent);
+//        componentService.addComponentList((Iterable<Component>) componentList);
         proposalService.updateProposal(proposalId, prop);
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
