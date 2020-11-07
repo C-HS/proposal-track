@@ -38,7 +38,7 @@ public class Dumpsite implements Serializable {
     public Integer yearOfStart;
     @ManyToOne
     @JoinColumn(name = "fk_subtype")
-    @JsonBackReference
+    @JsonBackReference(value = "dumpsite-list")
     private Subtype subType;
 
 }

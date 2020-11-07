@@ -1,6 +1,7 @@
 
 package com.indic.proposal.service.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -35,8 +36,10 @@ public class Media implements Serializable {
     public String mediaType;
     @ManyToOne
     @JoinColumn(name = "fk_plant_info")
+    @JsonBackReference(value = "plantinfo-media-list")
     private PlantInfo plantInfo;
     @ManyToOne
     @JoinColumn(name = "fk_landfill_info")
+    @JsonBackReference(value = "landfillinfo-media-list")
     private LandfillInfo landfillInfo;
 }

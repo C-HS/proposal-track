@@ -3,12 +3,11 @@ package com.indic.proposal.service.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import net.bytebuddy.build.ToStringPlugin;
 
@@ -122,10 +121,14 @@ public class PlantInfo implements Serializable {
     public String ownedBy;
     @JsonProperty("media")
     @OneToMany(mappedBy = "plantInfo")
-    public List<Media> media = new ArrayList<>();
+    @JsonManagedReference(value = "plantinfo-media-list")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    public Set<Media> mediaList = new HashSet<>();
     @JsonProperty("otherULBs")
     @OneToMany(mappedBy = "plantInfo")
-    public List<OtherULB> otherULBs = new ArrayList<>();
+    @JsonManagedReference(value = "plantinfo-otherulb-list")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    public Set<OtherULB> otherULBList = new HashSet<>();
     @JsonProperty("plantStatus")
     public String plantStatus;
     @JsonProperty("statusDetail")
@@ -148,13 +151,21 @@ public class PlantInfo implements Serializable {
     public String sanctionId;
     @OneToOne
     @JoinColumn(name = "fk_project")
+    @ToString.Exclude
     private Project project;
+
     public void addMedia(Media media){
-        this.media.add(media);
+        if (media == null) {
+            return;
+        }
+        this.mediaList.add(media);
         media.setPlantInfo(this);
     }
     public void addOtherULB(OtherULB otherULB){
-        this.otherULBs.add(otherULB);
+        if (otherULB == null) {
+            return;
+        }
+        this.otherULBList.add(otherULB);
         otherULB.setPlantInfo(this);
     }
 

@@ -42,14 +42,14 @@ public class Subtype implements Serializable {
     public String attachmentDoc;
     @JsonProperty("dumpsites")
     @OneToMany(mappedBy = "subType")
-    @JsonManagedReference
+    @JsonManagedReference(value = "dumpsite-list")
     public Set<Dumpsite> dumpsiteList = new HashSet<>();
     @JsonProperty("landfillInfo")
     @OneToOne(mappedBy = "subType")
     public LandfillInfo landfillInfo;
     @ManyToOne
     @JoinColumn(name = "fk_project")
-    @JsonBackReference
+    @JsonBackReference(value = "subtype-list")
     @ToString.Exclude
     private Project project;
     public void addDumpSite(Dumpsite dumpsite){

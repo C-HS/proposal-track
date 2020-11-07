@@ -54,7 +54,7 @@ public class Proposal implements Serializable {
     public String proposalStatus;
     @JsonProperty("component")
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference(value = "component-list")
     public Set<Component> componentList = new HashSet<>();
 
     public void addComponent(Component component){

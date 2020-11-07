@@ -54,12 +54,12 @@ public class Project implements Serializable {
     public PlantInfo plantInfo;
     @JsonProperty("subtypes")
     @OneToMany(mappedBy = "project")
-    @JsonManagedReference
+    @JsonManagedReference(value = "subtype-list")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public Set<Subtype> subtypesList = new HashSet<>();
     @ManyToOne
     @JoinColumn(name = "fk_component")
-    @JsonBackReference
+    @JsonBackReference(value = "project-list")
     @ToString.Exclude
     private Component component;
     public void addSubType(Subtype subtype){

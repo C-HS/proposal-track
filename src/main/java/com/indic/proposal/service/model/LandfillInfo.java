@@ -3,8 +3,12 @@ package com.indic.proposal.service.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
@@ -13,45 +17,6 @@ import net.bytebuddy.build.ToStringPlugin;
 import javax.persistence.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "stateId",
-    "districtId",
-    "ulbId",
-    "stateName",
-    "districtName",
-    "ulbName",
-    "wardId",
-    "landFillMisId",
-    "landfillName",
-    "address",
-    "landmark",
-    "regionalSlf",
-    "otherULBs",
-    "isNonPermeable",
-    "isMechanismLaeachate",
-    "isLocatedhill",
-    "nearestWaterBody",
-    "isDailyCovering",
-    "isQualityMonotoring",
-    "isLandFillShared",
-    "wasteInspectionArea",
-    "temporaryWasteStorage",
-    "status",
-    "dateOfStart",
-    "area",
-    "heightOfDesigned",
-    "heightOfCurrent",
-    "nearestHabitation",
-    "avgWasteSlf",
-    "quantityDisposed",
-    "projectCost",
-    "yearOfOperation",
-    "image",
-    "situated",
-    "latitude",
-    "longitude",
-    "wardName"
-})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -89,7 +54,9 @@ public class LandfillInfo implements Serializable {
     public String regionalSlf;
     @JsonProperty("otherULBs")
     @OneToMany
-    public List<OtherULB> otherULBs = new ArrayList<>();
+    @JsonManagedReference(value = "landfillinfo-otherulb-list")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    public Set<OtherULB> otherULBList = new HashSet<>();
     @JsonProperty("isNonPermeable")
     public Boolean isNonPermeable;
     @JsonProperty("isMechanismLaeachate")
@@ -130,7 +97,9 @@ public class LandfillInfo implements Serializable {
     public String yearOfOperation;
     @JsonProperty("image")
     @OneToMany(mappedBy = "landfillInfo")
-    public List<Media> media = new ArrayList<>();
+    @JsonManagedReference(value = "landfillinfo-media-list")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    public Set<Media> mediaList = new HashSet<>();
     @JsonProperty("situated")
     public String situated;
     @JsonProperty("latitude")
@@ -141,9 +110,20 @@ public class LandfillInfo implements Serializable {
     public String wardName;
     @OneToOne
     @JoinColumn(name = "fk_subtype")
+    @ToString.Exclude
     private Subtype subType;
     public void addMedia(Media media){
-        this.media.add(media);
+        if (media == null) {
+            return;
+        }
+        this.mediaList.add(media);
         media.setLandfillInfo(this);
+    }
+    public void addOtherULB(OtherULB otherULB){
+        if (otherULB == null) {
+            return;
+        }
+        this.otherULBList.add(otherULB);
+        otherULB.setLandfillInfo(this);
     }
 }

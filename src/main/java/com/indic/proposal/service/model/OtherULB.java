@@ -1,6 +1,7 @@
 
 package com.indic.proposal.service.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -27,7 +28,7 @@ public class OtherULB implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty("id")
-    public String id;
+    public long id;
     @JsonProperty("clusterUlbName")
     public String clusterUlbName;
     @JsonProperty("ulbId")
@@ -36,6 +37,13 @@ public class OtherULB implements Serializable {
     public Long distanceFromTarget;
     @ManyToOne
     @JoinColumn(name = "fk_plant_info")
+    @JsonBackReference(value = "plantinfo-otherulb-list")
+    @ToString.Exclude
     private PlantInfo plantInfo;
+    @ManyToOne
+    @JoinColumn(name = "fk_landfill_info")
+    @JsonBackReference(value = "landfillinfo-otherulb-list")
+    @ToString.Exclude
+    private LandfillInfo landfillInfo;
 
 }

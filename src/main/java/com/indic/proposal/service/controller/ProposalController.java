@@ -1,6 +1,8 @@
 package com.indic.proposal.service.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indic.proposal.service.model.Component;
+import com.indic.proposal.service.model.PlantInfo;
 import com.indic.proposal.service.model.Project;
 import com.indic.proposal.service.model.Proposal;
 import com.indic.proposal.service.request.ComponentList;
@@ -51,11 +53,22 @@ public class ProposalController {
     @PostMapping(value = "/addProject/{componentId}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<HttpStatus> addProjecct(@PathVariable long componentId, @RequestBody ProjectList projectList){
         Component comp = componentService.fetchComponentById(componentId);
-        projectList.getProjectList().stream().forEach(project -> {
+        /*projectList.getProjectList().stream().forEach(project -> {
                                                             comp.addProject(project);
                                                             projectService.addProject(project);
                                                             }
-                                                    );
+                                                    );*/
+        log.info("Project List Size (Number of Project Recieved): {}", projectList.getProjectList().size());
+        if(projectList.getProjectList().size() == 1){
+            Project project = projectList.getProjectList().get(0);
+            log.info("Recieved Object of Project: {}", project);
+            if (project.getPlantInfo() != null){
+                PlantInfo plantInfo = project.getPlantInfo();
+                log.info("Fetched the Object of PlantInfo: {}", plantInfo);
+            }
+        }else if(projectList.getProjectList().size() > 1){
+
+        }
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
     @PostMapping(value = "/addSubtype/{projectId}", consumes = "application/json", produces = "application/json")
