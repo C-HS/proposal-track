@@ -43,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"componentList\": [{\r\n\t\t\t\"componentType\": \"IHHL\",\r\n\t\t\t\"unit\": \"5\",\r\n\t\t\t\"projectCost\": \"124500\",\r\n\t\t\t\"installment\": \"Both\",\r\n\t\t\t\"firstInstallment\": \"2445444\",\r\n\t\t\t\"stateShare\": \"20000\",\r\n\t\t\t\"otherShare\": \"3400\",\r\n\t\t\t\"actionPlanDocument\": \"Action Document 1\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"componentType\": \"CT\",\r\n\t\t\t\"unit\": \"5\",\r\n\t\t\t\"projectCost\": \"124500\",\r\n\t\t\t\"installment\": \"Both\",\r\n\t\t\t\"firstInstallment\": \"2445444\",\r\n\t\t\t\"stateShare\": \"20000\",\r\n\t\t\t\"otherShare\": \"3400\",\r\n\t\t\t\"actionPlanDocument\": \"Action Document 2\"\r\n\t\t}\r\n\t]\r\n}",
+					"raw": "{\r\n  \"componentList\": [\r\n    {\r\n      \"componentType\": \"IHHL\",\r\n      \"unit\": \"5\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 1\"\r\n    },\r\n    {\r\n      \"componentType\": \"CT\",\r\n      \"unit\": \"5\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 2\"\r\n    },\r\n\t{\r\n\t\t\"componentType\": \"SWM\",\r\n\t\t\"unit\": \"NA\",\r\n\t\t\"projectCost\": \"120000\",\r\n\t\t\"installment\": \"First\",\r\n\t\t\"firstInstallment\": \"100000\",\r\n\t\t\"stateShare\": \"500000\",\r\n\t\t\"otherShare\": \"50000\",\r\n\t\t\"actionPlanDocument\": \"Action Document 3\"\r\n\t}\r\n   ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -84,6 +84,38 @@
 					"path": [
 						"api",
 						"proposal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addProject",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"projectList\": [\r\n\t\t\t\t{\r\n          \"projectType\": \"Collection & Transportation\",\r\n          \"projectCost\": \"1200\",\r\n          \"centralShare\": \"2000\",\r\n          \"stateShare\": \"2000\",\r\n          \"otherShare\": \"2000\"\r\n        },\r\n        {\r\n          \"projectType\": \"Processing Plants\",\r\n          \"projectCost\": \"1200\",\r\n          \"centralShare\": \"2000\",\r\n          \"stateShare\": \"2000\",\r\n          \"otherShare\": \"2000\",\r\n          \"plantInfo\": {\r\n            \"stateId\": 22,\r\n            \"districtId\": 401,\r\n            \"ulbId\": 801927,\r\n            \"stateName\": \"CHHATTISGARH\",\r\n            \"districtName\": \"SARGUJA\",\r\n            \"ulbName\": \"AMBIKAPUR\",\r\n            \"misPlantId\": \"001\",\r\n            \"facilityTypeId\": \"null\",\r\n            \"facilityTypeName\": \"null\",\r\n            \"facilityLabel\": \"null\",\r\n            \"facilityId\": 111,\r\n            \"wardId\": 17516,\r\n            \"name\": \"Demo\",\r\n            \"plantTypeId\": \"238ebfa8-5d00-437f-acd0-050d9d252e68\",\r\n            \"plantType\": \"Material Recovery Facility (MRF)\",\r\n            \"subCategoryId\": \"null\",\r\n            \"address\": \"noida\",\r\n            \"landmark\": \"null\",\r\n            \"pinCode\": \"null\",\r\n            \"latitude\": \"null\",\r\n            \"longitude\": \"null\",\r\n            \"projectCost\": 122.21,\r\n            \"fundedBy\": \"null\",\r\n            \"technology\": \"null\",\r\n            \"isIntegrated\": false,\r\n            \"isCentralised\": false,\r\n            \"ownedBy\": \"null\",\r\n            \"otherULBs\": [\r\n              {\r\n                \"clusterUlbName\": \"null\",\r\n                \"ulbId\": \"null\"\r\n              }\r\n            ],\r\n            \"plantStatus\": \"Approved by SHPC / Competent Authority\",\r\n            \"statusDetail\": \"\",\r\n            \"operatedBy\": \"null\",\r\n            \"ownedByPrivate\": \"null\",\r\n            \"operatedByPrivate\": \"null\",\r\n            \"inputs\": \"\",\r\n            \"wardName\": \"BHAGWANPUR WARD\",\r\n            \"DPRFile\": \"DPR File\",\r\n            \"actualStartDate\": \"null\",\r\n            \"sanctionId\": \"null\"\r\n          }\r\n        },\r\n\t\t\t\t{\r\n          \"projectType\": \"Disposal\",\r\n          \"projectCost\": \"1200\",\r\n          \"centralShare\": \"2000\",\r\n          \"stateShare\": \"2000\",\r\n          \"otherShare\": \"2000\",\r\n          \"subtypes\": [\r\n            {\r\n              \"projectSubType\": \"Other\",\r\n              \"projectBrief\": \"\",\r\n              \"attachmentDoc\": \"\"\r\n            },\r\n            {\r\n              \"projectSubType\": \"Dumpsite Remediation\",\r\n              \"dumpsites\": [\r\n                {\r\n                  \"quantity\": 4,\r\n                  \"area\": 120,\r\n                  \"height\": 12,\r\n                  \"yearOfStart\": 2020\r\n                },\r\n                {\r\n                  \"quantity\": 4,\r\n                  \"area\": 120,\r\n                  \"height\": 12,\r\n                  \"yearOfStart\": 2020\r\n                }\r\n              ]\r\n            },\r\n            {\r\n              \"projectSubType\": \"Landfill\",\r\n              \"landfillInfo\": {\r\n                \"stateId\": 22,\r\n                \"districtId\": 401,\r\n                \"ulbId\": 801927,\r\n                \"stateName\": \"CHHATTISGARH\",\r\n                \"districtName\": \"SARGUJA\",\r\n                \"ulbName\": \"AMBIKAPUR\",\r\n                \"wardId\": 29990,\r\n                \"landFillMisId\": \"Test1\",\r\n                \"landfillName\": \"Landfill \",\r\n                \"address\": \"Test2\",\r\n                \"landmark\": \"Test 2\",\r\n                \"regionalSlf\": null,\r\n                \"otherULBs\": [\r\n                  {\r\n                    \"ulbId\": null,\r\n                    \"clusterUlbName\": \"MISRIKH-CUM-NEEMSAR (NPP)\",\r\n                    \"distanceFromTarget\": \"0\"\r\n                  }\r\n                ],\r\n                \"isNonPermeable\": true,\r\n                \"isMechanismLaeachate\": false,\r\n                \"isLocatedhill\": false,\r\n                \"nearestWaterBody\": \"6\",\r\n                \"isDailyCovering\": false,\r\n                \"isQualityMonotoring\": false,\r\n                \"isLandFillShared\": true,\r\n                \"wasteInspectionArea\": \"0\",\r\n                \"temporaryWasteStorage\": \"1\",\r\n                \"status\": \"Under Construction\",\r\n                \"dateOfStart\": \"2020-08-03T18:30:00.000Z\",\r\n                \"area\": \"6777\",\r\n                \"heightOfDesigned\": \"57\",\r\n                \"heightOfCurrent\": \"56.0\",\r\n                \"nearestHabitation\": \"12\",\r\n                \"avgWasteSlf\": \"567\",\r\n                \"quantityDisposed\": 12112,\r\n                \"projectCost\": 554,\r\n                \"yearOfOperation\": \"677\",\r\n                \"image\": [\r\n                  {\r\n                    \"url\": \"\",\r\n                    \"media\": \"\"\r\n                  }\r\n                ],\r\n                \"situated\": \"null\",\r\n                \"latitude\": \"21\",\r\n                \"longitude\": \"12\",\r\n                \"wardName\": \"MAHARANA PRATAP WARD\"\r\n              }\r\n            }\r\n          ]\r\n        }\r\n\t\t ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/addProject/1",
+					"protocol": "https",
+					"host": [
+						"proposal-track",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"proposal",
+						"addProject",
+						"1"
 					]
 				}
 			},
