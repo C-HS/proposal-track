@@ -22,6 +22,7 @@ public class ProposalController {
     private final ComponentService componentService;
     private final ProjectService projectService;
 
+    //Logic for filtering the Proposal being fetched.
     @GetMapping
     public ResponseEntity<List<Proposal>> getAllProposal(){
         List<Proposal> proposal = proposalService.fetchAllProposal();
