@@ -7,10 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import net.bytebuddy.build.ToStringPlugin;
 
@@ -26,9 +23,11 @@ import javax.persistence.*;
 public class LandfillInfo implements Serializable {
 
     private static final long serialVersionUID = -5785368962883228230L;
-    @JsonProperty("stateId")
+    @JsonProperty("landFillId")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long landFillId;
+    @JsonProperty("stateId")
     public Long stateId;
     @JsonProperty("districtId")
     public Integer districtId;
@@ -53,7 +52,7 @@ public class LandfillInfo implements Serializable {
     @JsonProperty("regionalSlf")
     public String regionalSlf;
     @JsonProperty("otherULBs")
-    @OneToMany
+    @OneToMany(mappedBy = "landfillInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference(value = "landfillinfo-otherulb-list")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public Set<OtherULB> otherULBList = new HashSet<>();
@@ -96,7 +95,7 @@ public class LandfillInfo implements Serializable {
     @JsonProperty("yearOfOperation")
     public String yearOfOperation;
     @JsonProperty("image")
-    @OneToMany(mappedBy = "landfillInfo")
+    @OneToMany(mappedBy = "landfillInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference(value = "landfillinfo-media-list")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public Set<Media> mediaList = new HashSet<>();
@@ -111,6 +110,7 @@ public class LandfillInfo implements Serializable {
     @OneToOne
     @JoinColumn(name = "fk_subtype")
     @ToString.Exclude
+    @JsonBackReference(value = "landfill-info-object")
     private Subtype subType;
     public void addMedia(Media media){
         if (media == null) {

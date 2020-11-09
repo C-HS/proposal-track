@@ -8,13 +8,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "dumpSiteId",
-    "quantity",
-    "area",
-    "height",
-    "yearOfStart"
-})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -39,6 +32,7 @@ public class Dumpsite implements Serializable {
     @ManyToOne
     @JoinColumn(name = "fk_subtype")
     @JsonBackReference(value = "dumpsite-list")
+    @ToString.Exclude
     private Subtype subType;
 
 }

@@ -55,11 +55,11 @@ public class Component implements Serializable {
     @JsonProperty("actionPlanDocument")
     public String actionPlanDocument;
     @JsonProperty("projects")
-    @OneToMany(mappedBy = "component", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "component", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference(value = "project-list")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public Set<Project> projectList = new HashSet<>();
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "component-list")
     @JoinColumn(name = "fk_proposal")
     @ToString.Exclude

@@ -37,9 +37,11 @@ public class Media implements Serializable {
     @ManyToOne
     @JoinColumn(name = "fk_plant_info")
     @JsonBackReference(value = "plantinfo-media-list")
+    @ToString.Exclude
     private PlantInfo plantInfo;
     @ManyToOne
     @JoinColumn(name = "fk_landfill_info")
     @JsonBackReference(value = "landfillinfo-media-list")
+    @ToString.Exclude
     private LandfillInfo landfillInfo;
 }

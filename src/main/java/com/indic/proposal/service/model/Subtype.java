@@ -41,11 +41,12 @@ public class Subtype implements Serializable {
     @JsonProperty("attachmentDoc")
     public String attachmentDoc;
     @JsonProperty("dumpsites")
-    @OneToMany(mappedBy = "subType")
+    @OneToMany(mappedBy = "subType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference(value = "dumpsite-list")
     public Set<Dumpsite> dumpsiteList = new HashSet<>();
     @JsonProperty("landfillInfo")
-    @OneToOne(mappedBy = "subType")
+    @OneToOne(mappedBy = "subType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "landfill-info-object")
     public LandfillInfo landfillInfo;
     @ManyToOne
     @JoinColumn(name = "fk_project")

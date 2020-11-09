@@ -8,10 +8,7 @@ import com.indic.proposal.service.model.Proposal;
 import com.indic.proposal.service.request.ComponentList;
 import com.indic.proposal.service.request.ProjectList;
 import com.indic.proposal.service.request.SubtypeList;
-import com.indic.proposal.service.service.ComponentService;
-import com.indic.proposal.service.service.ProjectService;
-import com.indic.proposal.service.service.ProposalService;
-import com.indic.proposal.service.service.SubTypeService;
+import com.indic.proposal.service.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -30,6 +27,7 @@ public class ProposalController {
     private final ComponentService componentService;
     private final ProjectService projectService;
     private final SubTypeService subTypeService;
+    private final PlantInfoService plantInfoService;
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -53,22 +51,34 @@ public class ProposalController {
     @PostMapping(value = "/addProject/{componentId}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<HttpStatus> addProjecct(@PathVariable long componentId, @RequestBody ProjectList projectList){
         Component comp = componentService.fetchComponentById(componentId);
-        /*projectList.getProjectList().stream().forEach(project -> {
+        projectList.getProjectList().stream().forEach(project -> {
                                                             comp.addProject(project);
                                                             projectService.addProject(project);
                                                             }
-                                                    );*/
-        log.info("Project List Size (Number of Project Recieved): {}", projectList.getProjectList().size());
-        if(projectList.getProjectList().size() == 1){
-            Project project = projectList.getProjectList().get(0);
-            log.info("Recieved Object of Project: {}", project);
-            if (project.getPlantInfo() != null){
-                PlantInfo plantInfo = project.getPlantInfo();
-                log.info("Fetched the Object of PlantInfo: {}", plantInfo);
-            }
-        }else if(projectList.getProjectList().size() > 1){
+                                                    );
+        projectList.getProjectList()
+                .stream()
+                .forEach(project -> {
 
-        }
+                    switch (project.getProjectType()){
+                        case "Collection & Transportation":
+                            log.info("Gotcha a : {} Type Project", project.getProjectType());
+                            break;
+                        case "Processing Plants":
+                            log.info("Gotcha a : {} Type Project", project.getProjectType());
+                            PlantInfo plantInfo = project.getPlantInfo();
+//                                projectService.addProject(project);
+                                plantInfo.setProject(project);
+                                plantInfoService.addPlantInfo(plantInfo);
+                            break;
+                        case "Disposal":
+                            log.info("Gotcha a : {} Type Project", project.getProjectType());
+                            break;
+                        default:
+                            log.info("Got a Wrong Project");
+                            break;
+                    }
+                });
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
     @PostMapping(value = "/addSubtype/{projectId}", consumes = "application/json", produces = "application/json")

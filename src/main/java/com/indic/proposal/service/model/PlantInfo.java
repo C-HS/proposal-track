@@ -65,6 +65,8 @@ public class PlantInfo implements Serializable {
     private static final long serialVersionUID = 2734121425430750485L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("plantInfoId")
+    private Long plantInfoId;
     @JsonProperty("stateId")
     public Long stateId;
     @JsonProperty("districtId")
@@ -120,12 +122,12 @@ public class PlantInfo implements Serializable {
     @JsonProperty("ownedBy")
     public String ownedBy;
     @JsonProperty("media")
-    @OneToMany(mappedBy = "plantInfo")
+    @OneToMany(mappedBy = "plantInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference(value = "plantinfo-media-list")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public Set<Media> mediaList = new HashSet<>();
     @JsonProperty("otherULBs")
-    @OneToMany(mappedBy = "plantInfo")
+    @OneToMany(mappedBy = "plantInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference(value = "plantinfo-otherulb-list")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public Set<OtherULB> otherULBList = new HashSet<>();
@@ -152,6 +154,7 @@ public class PlantInfo implements Serializable {
     @OneToOne
     @JoinColumn(name = "fk_project")
     @ToString.Exclude
+    @JsonBackReference(value = "plant-info-object")
     private Project project;
 
     public void addMedia(Media media){

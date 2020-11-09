@@ -50,10 +50,11 @@ public class Project implements Serializable {
     @JsonProperty("jsonData")
     public String jsonData;
     @JsonProperty("plantInfo")
-    @OneToOne(mappedBy = "project")
+    @OneToOne(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "plant-info-object")
     public PlantInfo plantInfo;
     @JsonProperty("subtypes")
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference(value = "subtype-list")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public Set<Subtype> subtypesList = new HashSet<>();
