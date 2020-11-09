@@ -37,6 +37,7 @@ public class ProposalController {
         Proposal prop = proposalService.fetchProposalById(proposalId);
         componentList.getComponentList().stream().forEach(prop::addComponent);
         proposalService.updateProposal(proposalId, prop);
+        //Logic for checking for a proposal no component should come twice.
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
     @PostMapping(value = "/addProject/{componentId}", consumes = "application/json", produces = "application/json")
@@ -49,6 +50,8 @@ public class ProposalController {
                         projectService.addProject(project);
                         }
                 );
+        // Logic for checking that only SWM should have these projects.
+        // Logic for checking only Disposal should have the Subtypes [i.e. Dumpsite Remediation, Other, and Landfill].
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 }
