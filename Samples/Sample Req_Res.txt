@@ -40,9 +40,176 @@ Request Body:
       "stateShare": "20000",
       "otherShare": "3400",
       "actionPlanDocument": "Action Document 2"
-    }
+    },
+	{
+		"componentType": "SWM",
+		"unit": "NA",
+		"projectCost": "120000",
+		"installment": "First",
+		"firstInstallment": "100000",
+		"stateShare": "500000",
+		"otherShare": "50000",
+		"actionPlanDocument": "Action Document 3"
+	}
    ]
 }
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+						[Adding the Project{Composit} to the desired Component]
+----------------------------------------------------------------------------------------------------------------------------------------------------
+URL:http://localhost:8080/api/proposal/addProject/2
+Method: POST
+Request Body:
+{
+"projectList": [
+				{
+          "projectType": "Collection & Transportation",
+          "projectCost": "1200",
+          "centralShare": "2000",
+          "stateShare": "2000",
+          "otherShare": "2000"
+        },
+        {
+          "projectType": "Processing Plants",
+          "projectCost": "1200",
+          "centralShare": "2000",
+          "stateShare": "2000",
+          "otherShare": "2000",
+          "plantInfo": {
+            "stateId": 22,
+            "districtId": 401,
+            "ulbId": 801927,
+            "stateName": "CHHATTISGARH",
+            "districtName": "SARGUJA",
+            "ulbName": "AMBIKAPUR",
+            "misPlantId": "001",
+            "facilityTypeId": "null",
+            "facilityTypeName": "null",
+            "facilityLabel": "null",
+            "facilityId": 111,
+            "wardId": 17516,
+            "name": "Demo",
+            "plantTypeId": "238ebfa8-5d00-437f-acd0-050d9d252e68",
+            "plantType": "Material Recovery Facility (MRF)",
+            "subCategoryId": "null",
+            "address": "noida",
+            "landmark": "null",
+            "pinCode": "null",
+            "latitude": "null",
+            "longitude": "null",
+            "projectCost": 122.21,
+            "fundedBy": "null",
+            "technology": "null",
+            "isIntegrated": false,
+            "isCentralised": false,
+            "ownedBy": "null",
+            "otherULBs": [
+              {
+                "clusterUlbName": "null",
+                "ulbId": "null"
+              }
+            ],
+            "plantStatus": "Approved by SHPC / Competent Authority",
+            "statusDetail": "",
+            "operatedBy": "null",
+            "ownedByPrivate": "null",
+            "operatedByPrivate": "null",
+            "inputs": "",
+            "wardName": "BHAGWANPUR WARD",
+            "DPRFile": "DPR File",
+            "actualStartDate": "null",
+            "sanctionId": "null"
+          }
+        },
+				{
+          "projectType": "Disposal",
+          "projectCost": "1200",
+          "centralShare": "2000",
+          "stateShare": "2000",
+          "otherShare": "2000",
+          "subtypes": [
+            {
+              "projectSubType": "Other",
+              "projectBrief": "",
+              "attachmentDoc": ""
+            },
+            {
+              "projectSubType": "Dumpsite Remediation",
+              "dumpsites": [
+                {
+                  "quantity": 4,
+                  "area": 120,
+                  "height": 12,
+                  "yearOfStart": 2020
+                },
+                {
+                  "quantity": 4,
+                  "area": 120,
+                  "height": 12,
+                  "yearOfStart": 2020
+                }
+              ]
+            },
+            {
+              "projectSubType": "Landfill",
+              "landfillInfo": {
+                "stateId": 22,
+                "districtId": 401,
+                "ulbId": 801927,
+                "stateName": "CHHATTISGARH",
+                "districtName": "SARGUJA",
+                "ulbName": "AMBIKAPUR",
+                "wardId": 29990,
+                "landFillMisId": "Test1",
+                "landfillName": "Landfill ",
+                "address": "Test2",
+                "landmark": "Test 2",
+                "regionalSlf": null,
+                "otherULBs": [
+                  {
+                    "ulbId": null,
+                    "clusterUlbName": "MISRIKH-CUM-NEEMSAR (NPP)",
+                    "distanceFromTarget": "0"
+                  }
+                ],
+                "isNonPermeable": true,
+                "isMechanismLaeachate": false,
+                "isLocatedhill": false,
+                "nearestWaterBody": "6",
+                "isDailyCovering": false,
+                "isQualityMonotoring": false,
+                "isLandFillShared": true,
+                "wasteInspectionArea": "0",
+                "temporaryWasteStorage": "1",
+                "status": "Under Construction",
+                "dateOfStart": "2020-08-03T18:30:00.000Z",
+                "area": "6777",
+                "heightOfDesigned": "57",
+                "heightOfCurrent": "56.0",
+                "nearestHabitation": "12",
+                "avgWasteSlf": "567",
+                "quantityDisposed": 12112,
+                "projectCost": 554,
+                "yearOfOperation": "677",
+                "image": [
+                  {
+                    "url": "",
+                    "media": ""
+                  }
+                ],
+                "situated": "null",
+                "latitude": "21",
+                "longitude": "12",
+                "wardName": "MAHARANA PRATAP WARD"
+              }
+            }
+          ]
+        }
+		 ]
+}
+
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 							[Adding the Project to the desired Component]
