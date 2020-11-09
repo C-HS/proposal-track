@@ -49,40 +49,6 @@ public class ProposalController {
                         projectService.addProject(project);
                         }
                 );
-        /*projectList.getProjectList()
-                .stream()
-                .forEach(project -> {
-
-                    switch (project.getProjectType()){
-                        case "Collection & Transportation":
-                            log.info("Gotcha a : {} Type Project", project.getProjectType());
-                            break;
-                        case "Processing Plants":
-                            log.info("Gotcha a : {} Type Project", project.getProjectType());
-                            PlantInfo plantInfo = project.getPlantInfo();
-//                                projectService.addProject(project);
-                                plantInfo.setProject(project);
-                                plantInfoService.addPlantInfo(plantInfo);
-                            break;
-                        case "Disposal":
-                            log.info("Gotcha a : {} Type Project", project.getProjectType());
-                            break;
-                        default:
-                            log.info("Got a Wrong Project");
-                            break;
-                    }
-                });*/
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
-    /*@PostMapping(value = "/addSubtype/{projectId}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<HttpStatus> addSubtype(@PathVariable long projectId, @RequestBody SubtypeList subtypeList){
-        Project project = projectService.fetchProjectById(projectId);
-        subtypeList.getSubtypeList()
-                .stream()
-                .forEach(subtype -> {
-                    project.addSubType(subtype);
-                    subTypeService.addSubtype(subtype);
-                });
-        return ResponseEntity.ok(HttpStatus.CREATED);
-    }*/
 }
