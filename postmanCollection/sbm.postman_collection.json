@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"proposalDocument\": \"Document Lorem\",\r\n\t\"shpcDocument\": \"Document  Ipsum\",\r\n\t\"totalProposalCost\": \"150000\",\r\n\t\"totalCentralShare\": \"1200\",\r\n\t\"totalStateShare\": \"11000\",\r\n\t\"totalOtherShare\": \"1000\",\r\n\t\"proposalStatus\": \"Draft\"\r\n}",
+					"raw": "{\r\n\t\"proposalDocument\": \"ABCD\",\r\n\t\"shpcDocument\": \"EFGH\",\r\n\t\"totalProposalCost\": \"150000\",\r\n\t\"totalCentralShare\": \"1200\",\r\n\t\"totalStateShare\": \"11000\",\r\n\t\"totalOtherShare\": \"1000\",\r\n\t\"proposalStatus\": \"Draft\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -43,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"componentList\": [\r\n    {\r\n      \"componentType\": \"IHHL\",\r\n      \"unit\": \"5\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 1\"\r\n    },\r\n    {\r\n      \"componentType\": \"CT\",\r\n      \"unit\": \"5\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 2\"\r\n    },\r\n\t{\r\n\t\t\"componentType\": \"SWM\",\r\n\t\t\"unit\": \"NA\",\r\n\t\t\"projectCost\": \"120000\",\r\n\t\t\"installment\": \"First\",\r\n\t\t\"firstInstallment\": \"100000\",\r\n\t\t\"stateShare\": \"500000\",\r\n\t\t\"otherShare\": \"50000\",\r\n\t\t\"actionPlanDocument\": \"Action Document 3\"\r\n\t}\r\n   ]\r\n}",
+					"raw": "{\r\n  \"componentList\": [\r\n    {\r\n      \"componentType\": \"PT\",\r\n      \"unit\": \"1\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 1\"\r\n    }\r\n   ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -116,6 +116,68 @@
 						"proposal",
 						"addProject",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ApproveOrRejectProposal",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"proposalId\" : 1,\r\n    \"proposalStatus\" : \"APPROVED\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/setProposalStatus",
+					"protocol": "https",
+					"host": [
+						"proposal-track",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"proposal",
+						"setProposalStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchProposal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"componentType\":\"NA\",\r\n\t\"fromDate\":\"09/11/2020\",\r\n\t\"toDate\":\"10/11/2020\",\r\n\t\"status\":\"NA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/searchProposals",
+					"protocol": "https",
+					"host": [
+						"proposal-track",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"proposal",
+						"searchProposals"
 					]
 				}
 			},

@@ -2,16 +2,30 @@
 package com.indic.proposal.service.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.*;
-import lombok.*;
-import org.hibernate.metamodel.model.domain.IdentifiableDomainType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 /*@JsonPropertyOrder({
@@ -40,6 +54,8 @@ public class Proposal implements Serializable {
     public Long proposalId;
     @JsonProperty("proposalDocument")
     public String proposalDocument;
+    @JsonProperty("proposalName")
+    public String proposalName;
     @JsonProperty("shpcDocument")
     public String shpcDocument;
     @JsonProperty("totalProposalCost")
@@ -50,6 +66,12 @@ public class Proposal implements Serializable {
     public String totalStateShare;
     @JsonProperty("totalOtherShare")
     public String totalOtherShare;
+	@Column(name = "dateReceive")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateReceive;
+	@Column(name = "dateLastUpdate")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateLastUpdate;
     @JsonProperty("proposalStatus")
     public String proposalStatus;
     @JsonProperty("component")
