@@ -51,7 +51,7 @@ public void deleteComponentById(long componentId) {
 
 @Override
 public Component updateComponent(long componentId, Component component) {
-    component.setComponentTypeId(componentId);
+    component.setComponentId(componentId);
     component.setProposal(this.fetchComponentById(componentId).getProposal());
     return componentRepository.save(component);
 }

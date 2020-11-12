@@ -14,17 +14,6 @@ import springfox.documentation.spring.web.json.Json;
 import javax.persistence.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-/*@JsonPropertyOrder({
-    "projectTypeId",
-    "projectType",
-    "projectCost",
-    "centralShare",
-    "stateShare",
-    "otherShare",
-    "jsonData",
-    "plantInfo",
-    "subtypes"
-})*/
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,8 +24,10 @@ public class Project implements Serializable {
     private static final long serialVersionUID = 4345878585547353539L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("projectId")
+    private Long projectId;
     @JsonProperty("projectTypeId")
-    public Long projectTypeId;
+    public String projectTypeId;
     @JsonProperty("projectType")
     public String projectType;
     @JsonProperty("projectCost")

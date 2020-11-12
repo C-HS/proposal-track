@@ -28,16 +28,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-/*@JsonPropertyOrder({
-    "proposalId",
-    "proposalDocument",
-    "shpcDocument",
-    "totalProposalCost",
-    "totalCentralShare",
-    "totalStateShare",
-    "totalOtherShare",
-    "component"
-})*/
 @Getter
 @Setter
 @NoArgsConstructor
@@ -77,6 +67,7 @@ public class Proposal implements Serializable {
     @JsonProperty("component")
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference(value = "component-list")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public Set<Component> componentList = new HashSet<>();
 
     public void addComponent(Component component){

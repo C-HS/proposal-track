@@ -34,7 +34,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project updateProject(long projectId, Project project) {
-        project.setProjectTypeId(projectId);
+        project.setProjectId(projectId);
         project.setComponent(this.fetchProjectById(projectId).getComponent());
         return projectRepository.save(project);
     }

@@ -36,8 +36,10 @@ public class Component implements Serializable {
     private static final long serialVersionUID = 8533818105839237447L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("componentId")
+    private Long componentId;
     @JsonProperty("componentTypeId")
-    public Long componentTypeId;
+    public String componentTypeId;
     @JsonProperty("componentType")
     public String componentType;
     @JsonProperty("unit")
@@ -59,6 +61,8 @@ public class Component implements Serializable {
     @JsonManagedReference(value = "project-list")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public Set<Project> projectList = new HashSet<>();
+    @JsonProperty("componentStatus")
+    private String componentStatus = "Draft";
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "component-list")
     @JoinColumn(name = "fk_proposal")
