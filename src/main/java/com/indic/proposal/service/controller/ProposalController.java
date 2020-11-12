@@ -33,8 +33,7 @@ public class ProposalController {
     private final ProjectService projectService;
 
     @GetMapping(value = "/listProposal", produces="application/json")
-	public ResponseEntity<ProposalResponse> listProposal(@RequestHeader(value = "X_USER_ACCESS") String requestHeader){
-    	log.info("Recieved the Request Header Value: {}", requestHeader);
+	public ResponseEntity<ProposalResponse> listProposal(){
     	ProposalResponse proposalResponse = new ProposalResponse();
     	List<Proposal> listProposal = proposalService.fetchAllProposal();
     	proposalResponse.setCount((long) listProposal.size());
