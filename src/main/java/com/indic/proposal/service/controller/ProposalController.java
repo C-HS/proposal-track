@@ -32,13 +32,6 @@ public class ProposalController {
     private final ComponentService componentService;
     private final ProjectService projectService;
 
-    //Logic for filtering the Proposal being fetched.
-    @GetMapping
-    public ResponseEntity<List<Proposal>> getAllProposal(){
-        List<Proposal> proposal = proposalService.fetchAllProposal();
-        return ResponseEntity.ok(proposal);
-    }
-
     @GetMapping(value = "/listProposal", produces="application/json")
 	public ResponseEntity<ProposalResponse> listProposal(@RequestHeader(value = "X_USER_ACCESS") String requestHeader){
     	log.info("Recieved the Request Header Value: {}", requestHeader);
@@ -48,7 +41,6 @@ public class ProposalController {
     	proposalResponse.setData(listProposal);
     	return ResponseEntity.ok(proposalResponse);
 	}
-
 	@GetMapping(value= "/listComponent",  produces = "application/json")
 	public ResponseEntity<List<Component>> listComponent(){
     	return ResponseEntity.ok(componentService.fetchAllComponent());
@@ -59,7 +51,6 @@ public class ProposalController {
         proposalService.addProposal(proposal);
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
-
 	@PostMapping(value = "/addComponents/{proposalId}", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Component> addComponents(@PathVariable long proposalId, @RequestBody Component component){
 		Proposal prop = proposalService.fetchProposalById(proposalId);
@@ -73,7 +64,24 @@ public class ProposalController {
 		comp.addProject(project);
 		return ResponseEntity.ok(projectService.addProject(project));
 	}
-
+	@DeleteMapping(value = "/deleteComponent/{componentId}")
+	public ResponseEntity<String> deleteComponent(@PathVariable Long componentId){
+    	componentService.deleteComponentById(componentId);
+    	return ResponseEntity.ok("Deleted Component : " + componentId);
+	}
+	@PutMapping(value = "/updateComponent/{componentId}", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<Component> updateComponent(@PathVariable Long componentId, @RequestBody Component component){
+    	return ResponseEntity.ok(componentService.updateComponent(componentId, component));
+	}
+	@DeleteMapping(value = "/deleteProject/{projecctId")
+	public ResponseEntity<String> deleteProject(@PathVariable Long projectId){
+    	projectService.deleteProjectById(projectId);
+    	return ResponseEntity.ok("Deleted Project : " + projectId);
+	}
+	@PutMapping(value = "/updateProject/{projectId}", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<Project> updateProject(@PathVariable Long projectId, @RequestBody Project project){
+    	return ResponseEntity.ok(projectService.updateProject(projectId, project));
+	}
 	@PutMapping("/setProposalStatus")
 	public ResponseEntity<String> setProposalStatus(@RequestBody ProposalStatus proposalStatus) {
 		String response ="error";
@@ -84,7 +92,6 @@ public class ProposalController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
     @PostMapping(value = "/searchProposals", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Set<Proposal>> searhProposal(@RequestBody ProposalFilter proposalFilter) {
 		Set<Proposal> proposalSet = new HashSet();
