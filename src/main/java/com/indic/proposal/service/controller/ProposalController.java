@@ -45,12 +45,25 @@ public class ProposalController {
 	public ResponseEntity<List<Component>> listComponent(){
     	return ResponseEntity.ok(componentService.fetchAllComponent());
 	}
+	@GetMapping(value = "/listProject",  produces= "application/json")
+	public ResponseEntity<List<Project>> listProjects(){
+    	return ResponseEntity.ok(projectService.fetchAllProject());
+	}
     @PostMapping(value = "/addProposal", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<HttpStatus> addProposal(@RequestBody Proposal proposal){
+    public ResponseEntity<Proposal> addProposal(@RequestBody Proposal proposal){
     	proposal.setDateReceive(new Date());
-        proposalService.addProposal(proposal);
-        return ResponseEntity.ok(HttpStatus.CREATED);
+        return ResponseEntity.ok(proposalService.addProposal(proposal));
     }
+    @PutMapping(value = "/updateProposal/{proposalId}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Proposal> updateProposal(@PathVariable Long proposalId, @RequestBody Proposal proposal){
+    	proposal.setDateReceive(new Date());
+        return ResponseEntity.ok(proposalService.updateProposal(proposalId, proposal));
+    }
+    @DeleteMapping(value = "/deleteProposal/{proposalId}")
+	public ResponseEntity<String> deleteProposal(@PathVariable Long proposalId){
+    	proposalService.deleteProposalById(proposalId);
+    	return ResponseEntity.ok("Proposal Deleted : " + proposalId);
+	}
 	@PostMapping(value = "/addComponents/{proposalId}", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Component> addComponents(@PathVariable long proposalId, @RequestBody Component component){
 		Proposal prop = proposalService.fetchProposalById(proposalId);
@@ -73,7 +86,7 @@ public class ProposalController {
 	public ResponseEntity<Component> updateComponent(@PathVariable Long componentId, @RequestBody Component component){
     	return ResponseEntity.ok(componentService.updateComponent(componentId, component));
 	}
-	@DeleteMapping(value = "/deleteProject/{projecctId")
+	@DeleteMapping(value = "/deleteProject/{projecctId}")
 	public ResponseEntity<String> deleteProject(@PathVariable Long projectId){
     	projectService.deleteProjectById(projectId);
     	return ResponseEntity.ok("Deleted Project : " + projectId);
