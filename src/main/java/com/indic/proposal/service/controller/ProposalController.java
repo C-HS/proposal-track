@@ -67,7 +67,8 @@ public class ProposalController {
 	public ResponseEntity<Component> addComponents(@PathVariable long proposalId, @RequestBody Component component){
 		Proposal prop = proposalService.fetchProposalById(proposalId);
 		prop.addComponent(component);
-		proposalService.updateProposal(proposalId, prop);
+		componentService.addComponent(component);
+//		proposalService.updateProposal(proposalId, prop);
 		return ResponseEntity.ok(component);
 	}
 	@PostMapping(value = "/addProject/{componentId}", consumes = "application/json", produces = "application/json")
