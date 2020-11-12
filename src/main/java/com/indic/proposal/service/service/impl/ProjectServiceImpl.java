@@ -29,6 +29,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void deleteProjectById(long projectId) {
+        this.fetchProjectById(projectId).setComponent(null);
         projectRepository.deleteById(projectId);
     }
 

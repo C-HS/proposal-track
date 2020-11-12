@@ -46,7 +46,8 @@ public List<Component> fetchAllComponent() {
 
 @Override
 public void deleteComponentById(long componentId) {
-    componentRepository.deleteById(componentId);
+    this.fetchComponentById(componentId).setProposal(null);
+	componentRepository.deleteById(componentId);
 }
 
 @Override

@@ -79,7 +79,6 @@ public class ProposalController {
 	}
 	@DeleteMapping(value = "/deleteComponent/{componentId}")
 	public ResponseEntity<String> deleteComponent(@PathVariable Long componentId){
-    	componentService.fetchComponentById(componentId).setProposal(null);
     	componentService.deleteComponentById(componentId);
     	return ResponseEntity.ok("Deleted Component : " + componentId);
 	}
@@ -89,7 +88,6 @@ public class ProposalController {
 	}
 	@DeleteMapping(value = "/deleteProject/{projectId}")
 	public ResponseEntity<String> deleteProject(@PathVariable Long projectId){
-    	projectService.fetchProjectById(projectId).setComponent(null);
     	projectService.deleteProjectById(projectId);
     	return ResponseEntity.ok("Deleted Project : " + projectId);
 	}
