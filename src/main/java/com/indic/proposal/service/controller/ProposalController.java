@@ -87,8 +87,9 @@ public class ProposalController {
 	public ResponseEntity<Component> updateComponent(@PathVariable Long componentId, @RequestBody Component component){
     	return ResponseEntity.ok(componentService.updateComponent(componentId, component));
 	}
-	@DeleteMapping(value = "/deleteProject/{projecctId}")
+	@DeleteMapping(value = "/deleteProject/{projectId}")
 	public ResponseEntity<String> deleteProject(@PathVariable Long projectId){
+    	projectService.fetchProjectById(projectId).setComponent(null);
     	projectService.deleteProjectById(projectId);
     	return ResponseEntity.ok("Deleted Project : " + projectId);
 	}
