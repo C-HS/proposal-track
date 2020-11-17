@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "bb1204c4-7b9f-4b9d-9675-73e429bb8e63",
-		"name": "sbm",
+		"_postman_id": "415367b7-34bd-4e21-a721-9a5191d905d4",
+		"name": "sbm Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -44,7 +44,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"proposalDocument\": \"Document Lorem\",\r\n\t\"shpcDocument\": \"Document  Ipsum\",\r\n\t\"totalProposalCost\": \"150000\",\r\n\t\"totalCentralShare\": \"1200\",\r\n\t\"totalStateShare\": \"11000\",\r\n\t\"totalOtherShare\": \"1000\",\r\n\t\"proposalStatus\": \"Draft\"\r\n}",
+					"raw": "{\r\n\t\"proposalDocument\": \"Document ABCD\",\r\n\t\"shpcDocument\": \"Document  XYZ\",\r\n\t\"totalProposalCost\": \"150000\",\r\n\t\"totalCentralShare\": \"1200\",\r\n\t\"totalStateShare\": \"11000\",\r\n\t\"totalOtherShare\": \"1000\",\r\n\t\"proposalStatus\": \"Draft\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,7 +77,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"componentTypeId\" : \"SomeRanDomID\" ,\r\n\t\"componentType\": \"SWM\",\r\n\t\"unit\": \"NA\",\r\n\t\"projectCost\": \"124500\",\r\n\t\"installment\": \"Both\",\r\n\t\"firstInstallment\": \"2445444\",\r\n\t\"stateShare\": \"20000\",\r\n\t\"otherShare\": \"3400\",\r\n\t\"actionPlanDocument\": \"Action Document 1\"\r\n}",
+					"raw": "{\r\n\t\"componentTypeId\" : \"SomeRanDomID\" ,\r\n\t\"componentType\": \"SWM\",\r\n\t\"unit\": \"NA\",\r\n\t\"projectCost\": \"124500\",\r\n\t\"installment\": \"Both\",\r\n\t\"firstInstallment\": \"2445444\",\r\n\t\"stateShare\": \"20000\",\r\n\t\"otherShare\": \"3400\",\r\n\t\"actionPlanDocument\": \"Action Document 1bbbbbbb\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,7 +85,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://proposal-track.herokuapp.com/api/proposal/addComponents/1",
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/addComponents/2",
 					"protocol": "https",
 					"host": [
 						"proposal-track",
@@ -96,7 +96,7 @@
 						"api",
 						"proposal",
 						"addComponents",
-						"1"
+						"2"
 					]
 				},
 				"description": "Endpoint to create a list of component to an existing proposal.\n\nRequest URL Format:\nhttps://proposal-track.herokuapp.com/api/proposal/addComponents/<PROPOSAL-ID>\n"
@@ -110,7 +110,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"componentTypeId\" : \"SomeRanDomID\" ,\r\n\t\"componentType\": \"SWM\",\r\n\t\"unit\": \"NA\",\r\n\t\"projectCost\": \"124500\",\r\n\t\"installment\": \"Both\",\r\n\t\"firstInstallment\": \"2445444\",\r\n\t\"stateShare\": \"20000\",\r\n\t\"otherShare\": \"3400\",\r\n\t\"actionPlanDocument\": \"Action Document 1\"\r\n}",
+					"raw": "{\r\n\t\"componentTypeId\" : \"SomeRanDomID\" ,\r\n\t\"componentType\": \"SWM\",\r\n\t\"unit\": \"NA\",\r\n\t\"projectCost\": \"124500\",\r\n\t\"installment\": \"Both\",\r\n\t\"firstInstallment\": \"2445444\",\r\n\t\"stateShare\": \"20000\",\r\n\t\"otherShare\": \"3400\",\r\n\t\"actionPlanDocument\": \"Action Document 1 xyz\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -118,7 +118,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://proposal-track.herokuapp.com/api/proposal/updateComponent/1",
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/updateComponent/2",
 					"protocol": "https",
 					"host": [
 						"proposal-track",
@@ -129,7 +129,7 @@
 						"api",
 						"proposal",
 						"updateComponent",
-						"1"
+						"2"
 					]
 				},
 				"description": "Endpoint to create a list of component to an existing proposal.\n\nRequest URL Format:\nhttps://proposal-track.herokuapp.com/api/proposal/addComponents/<PROPOSAL-ID>\n"
@@ -141,17 +141,8 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"componentList\": [\r\n    {\r\n      \"componentType\": \"IHHL\",\r\n      \"unit\": \"5\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 1\"\r\n    },\r\n    {\r\n      \"componentType\": \"CT\",\r\n      \"unit\": \"5\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 2\"\r\n    },\r\n\t{\r\n\t\t\"componentType\": \"SWM\",\r\n\t\t\"unit\": \"NA\",\r\n\t\t\"projectCost\": \"120000\",\r\n\t\t\"installment\": \"First\",\r\n\t\t\"firstInstallment\": \"100000\",\r\n\t\t\"stateShare\": \"500000\",\r\n\t\t\"otherShare\": \"50000\",\r\n\t\t\"actionPlanDocument\": \"Action Document 3\"\r\n\t}\r\n   ]\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "https://proposal-track.herokuapp.com/api/proposal/deleteComponent/1",
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/deleteComponent/2",
 					"protocol": "https",
 					"host": [
 						"proposal-track",
@@ -162,7 +153,7 @@
 						"api",
 						"proposal",
 						"deleteComponent",
-						"1"
+						"2"
 					]
 				},
 				"description": "Endpoint to create a list of component to an existing proposal.\n\nRequest URL Format:\nhttps://proposal-track.herokuapp.com/api/proposal/addComponents/<PROPOSAL-ID>\n"
@@ -174,17 +165,8 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"componentList\": [\r\n    {\r\n      \"componentType\": \"IHHL\",\r\n      \"unit\": \"5\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 1\"\r\n    },\r\n    {\r\n      \"componentType\": \"CT\",\r\n      \"unit\": \"5\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 2\"\r\n    },\r\n\t{\r\n\t\t\"componentType\": \"SWM\",\r\n\t\t\"unit\": \"NA\",\r\n\t\t\"projectCost\": \"120000\",\r\n\t\t\"installment\": \"First\",\r\n\t\t\"firstInstallment\": \"100000\",\r\n\t\t\"stateShare\": \"500000\",\r\n\t\t\"otherShare\": \"50000\",\r\n\t\t\"actionPlanDocument\": \"Action Document 3\"\r\n\t}\r\n   ]\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "https://proposal-track.herokuapp.com/api/proposal/deleteProposal/1",
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/deleteProposal/2",
 					"protocol": "https",
 					"host": [
 						"proposal-track",
@@ -195,7 +177,7 @@
 						"api",
 						"proposal",
 						"deleteProposal",
-						"1"
+						"2"
 					]
 				},
 				"description": "Endpoint to create a list of component to an existing proposal.\n\nRequest URL Format:\nhttps://proposal-track.herokuapp.com/api/proposal/addComponents/<PROPOSAL-ID>\n"
@@ -207,17 +189,8 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"componentList\": [\r\n    {\r\n      \"componentType\": \"IHHL\",\r\n      \"unit\": \"5\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 1\"\r\n    },\r\n    {\r\n      \"componentType\": \"CT\",\r\n      \"unit\": \"5\",\r\n      \"projectCost\": \"124500\",\r\n      \"installment\": \"Both\",\r\n      \"firstInstallment\": \"2445444\",\r\n      \"stateShare\": \"20000\",\r\n      \"otherShare\": \"3400\",\r\n      \"actionPlanDocument\": \"Action Document 2\"\r\n    },\r\n\t{\r\n\t\t\"componentType\": \"SWM\",\r\n\t\t\"unit\": \"NA\",\r\n\t\t\"projectCost\": \"120000\",\r\n\t\t\"installment\": \"First\",\r\n\t\t\"firstInstallment\": \"100000\",\r\n\t\t\"stateShare\": \"500000\",\r\n\t\t\"otherShare\": \"50000\",\r\n\t\t\"actionPlanDocument\": \"Action Document 3\"\r\n\t}\r\n   ]\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "https://proposal-track.herokuapp.com/api/proposal/deleteProject/1",
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/deleteProject/2",
 					"protocol": "https",
 					"host": [
 						"proposal-track",
@@ -228,7 +201,7 @@
 						"api",
 						"proposal",
 						"deleteProject",
-						"1"
+						"2"
 					]
 				},
 				"description": "Endpoint to create a list of component to an existing proposal.\n\nRequest URL Format:\nhttps://proposal-track.herokuapp.com/api/proposal/addComponents/<PROPOSAL-ID>\n"
@@ -311,7 +284,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"projectType\": \"Collection & Transportation\",\r\n\t\"projectCost\": \"1200\",\r\n\t\"centralShare\": \"2000\",\r\n\t\"stateShare\": \"2000\",\r\n\t\"otherShare\": \"2000\",\r\n\t\"jsonData\": \"\"\r\n}",
+					"raw": "{\r\n\t\"projectType\": \"Collection & Transportation\",\r\n\t\"projectCost\": \"1700\",\r\n\t\"centralShare\": \"7000\",\r\n\t\"stateShare\": \"7000\",\r\n\t\"otherShare\": \"7000\",\r\n\t\"jsonData\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -319,7 +292,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://proposal-track.herokuapp.com/api/proposal/addProject/6",
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/addProject/2",
 					"protocol": "https",
 					"host": [
 						"proposal-track",
@@ -330,7 +303,7 @@
 						"api",
 						"proposal",
 						"addProject",
-						"6"
+						"2"
 					]
 				},
 				"description": "Endpoint to create the composit project composed of all underlying details and list of project.\n\nRequest URL Format:\nhttps://proposal-track.herokuapp.com/api/proposal/addProject/<SBM-COMPONENT-ID>"
@@ -344,7 +317,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"projectType\": \"Collection & Transportation\",\r\n\t\"projectCost\": \"1200\",\r\n\t\"centralShare\": \"2000\",\r\n\t\"stateShare\": \"2000\",\r\n\t\"otherShare\": \"2000\",\r\n\t\"jsonData\": \"\"\r\n}",
+					"raw": "{\r\n\t\"projectType\": \"Collection & Transportation\",\r\n\t\"projectCost\": \"1500\",\r\n\t\"centralShare\": \"5000\",\r\n\t\"stateShare\": \"5000\",\r\n\t\"otherShare\": \"5000\",\r\n\t\"jsonData\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -352,18 +325,17 @@
 					}
 				},
 				"url": {
-					"raw": "https://proposal-track.herokuapp.com/api/proposal/updateProject/6",
-					"protocol": "https",
+					"raw": "http://localhost:8080/api/proposal/updateProject/1",
+					"protocol": "http",
 					"host": [
-						"proposal-track",
-						"herokuapp",
-						"com"
+						"localhost"
 					],
+					"port": "8080",
 					"path": [
 						"api",
 						"proposal",
 						"updateProject",
-						"6"
+						"1"
 					]
 				},
 				"description": "Endpoint to create the composit project composed of all underlying details and list of project.\n\nRequest URL Format:\nhttps://proposal-track.herokuapp.com/api/proposal/addProject/<SBM-COMPONENT-ID>"
@@ -377,7 +349,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"componentType\":\"NA\",\n    \"fromDate\":\"09/11/2020\",\n    \"toDate\":\"10/11/2020\",\n    \"status\":\"NA\"\n}",
+					"raw": "{\n    \"componentType\":\"NA\",\n    \"fromDate\":\"09/11/2020\",\n    \"toDate\":\"17/11/2020\",\n    \"status\":\"NA\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -385,7 +357,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://proposal-track.herokuapp.com/api/proposal/searchProposal",
+					"raw": "https://proposal-track.herokuapp.com/api/proposal/searchProposals",
 					"protocol": "https",
 					"host": [
 						"proposal-track",
@@ -395,7 +367,7 @@
 					"path": [
 						"api",
 						"proposal",
-						"searchProposal"
+						"searchProposals"
 					]
 				},
 				"description": "To Filter and Searchiing the Created Proposal."
