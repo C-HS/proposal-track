@@ -3,6 +3,7 @@ package com.indic.proposal.service.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,10 +51,18 @@ public class Component implements Serializable {
     public String installment;
     @JsonProperty("firstInstallment")
     public String firstInstallment;
+    @JsonProperty("centralShare")
+    public String centralShare;
     @JsonProperty("stateShare")
     public String stateShare;
     @JsonProperty("otherShare")
     public String otherShare;
+	@Column(name = "dateCreated")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateCreated;
+	@Column(name = "dateLastUpdate")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateLastUpdate;
     @JsonProperty("actionPlanDocument")
     public String actionPlanDocument;
     @JsonProperty("projects")

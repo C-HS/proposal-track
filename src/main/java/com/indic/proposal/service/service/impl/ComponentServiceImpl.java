@@ -45,16 +45,59 @@ public List<Component> fetchAllComponent() {
 }
 
 @Override
-public void deleteComponentById(long componentId) {
-    this.fetchComponentById(componentId).setProposal(null);
-	componentRepository.deleteById(componentId);
+public String deleteComponentById(long componentId) {
+	
+	try
+	{
+      this.fetchComponentById(componentId).setProposal(null);
+	  componentRepository.deleteById(componentId);
+	  return "success";
+	}
+	catch(Exception e)
+	{
+		return "deletion_error";	
+	}
 }
 
 @Override
 public Component updateComponent(long componentId, Component component) {
-    component.setComponentId(componentId);
-    component.setProposal(this.fetchComponentById(componentId).getProposal());
-    return componentRepository.save(component);
+	/*
+	 * component.setComponentId(componentId);
+	 * component.setProposal(this.fetchComponentById(componentId).getProposal());
+	 * return componentRepository.save(component);
+	 */
+    
+    try
+	{
+    	Component comp = this.fetchComponentById(componentId);
+		if(comp!=null && comp.getComponentId()!=0)
+		{
+		    comp.setComponentTypeId(component.getComponentTypeId());
+		    comp.setComponentType(component.getComponentType());
+		    comp.setUnit(component.getUnit());
+		    comp.setProjectCost(component.getProjectCost());
+		    comp.setInstallment(component.getInstallment());
+		    comp.setFirstInstallment(component.getFirstInstallment());
+		    comp.setCentralShare(component.getCentralShare());
+		    comp.setStateShare(component.getStateShare());
+		    comp.setOtherShare(component.getOtherShare());
+		    comp.setActionPlanDocument(component.getActionPlanDocument());
+		    comp.setDateLastUpdate(component.getDateLastUpdate());
+		
+			componentRepository.save(comp);
+		
+		return comp;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	catch(Exception e)
+	{
+		System.out.println("#########################     "+e.getMessage());
+		return null;	
+	}
 }
 
 @Override
@@ -79,7 +122,7 @@ public Set<Proposal> filterByBetweenDates(Date fromDate, Date toDate, Set<Propos
 	 for(Proposal proposal: proposals)
 	 {
 		 
-		 if(proposal.getDateReceive().compareTo(fromDate)>=0 && proposal.getDateReceive().compareTo(toDate)<= 0)
+		 if(proposal.getDateOfSubmission().compareTo(fromDate)>=0 && proposal.getDateOfSubmission().compareTo(toDate)<= 0)
 		 {
 			 proposalList.add(proposal);
 		 }

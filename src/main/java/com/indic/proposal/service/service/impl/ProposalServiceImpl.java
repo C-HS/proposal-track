@@ -23,13 +23,28 @@ public class ProposalServiceImpl implements ProposalService {
     private final ModelMapper modelMapper;
 
     @Override
-    public Proposal addProposal(Proposal proposal) {
-        return proposalRepository.save(proposal);
+    public String addProposal(Proposal proposal) {
+    	
+    	try
+		{
+    		proposalRepository.save(proposal);
+			
+			return "success";
+		}
+		catch(org.springframework.dao.DataIntegrityViolationException e)
+		{
+			return "already_exist";			
+		}
+		catch(Exception e)
+		{
+			return "submission_error";	
+		}
+    	
     }
 
     @Override
-    public Proposal fetchProposalById(long proposalId) {
-        return proposalRepository.findById(proposalId).get();
+    public Proposal fetchProposalById(long id) {
+        return proposalRepository.findById(id).get();
     }
 
     @Override
@@ -38,16 +53,57 @@ public class ProposalServiceImpl implements ProposalService {
     }
 
     @Override
-    public void deleteProposalById(long proposalId) {
-        proposalRepository.deleteById(proposalId);
+    public String deleteProposalById(long id) {
+    	
+    	try
+		{
+    		 proposalRepository.deleteById(id);
+			
+			return "success";
+		}
+		catch(Exception e)
+		{
+			return "deletion_error";	
+		}
+       
     }
 
     @Override
-    public Proposal updateProposal(long proposalId, Proposal proposal) {
-        /*Proposal prop = this.fetchProposalById(proposalId);
-        prop = proposal;*/
-        proposal.setProposalId(proposalId);
-        return proposalRepository.save(proposal);
+    public Proposal updateProposal(long id, Proposal proposal) {
+    //public Proposal updateProposal(long proposalId, Proposal proposal) {
+        
+        /* prop = proposal;*/
+        //proposal.setProposalId(proposalId);
+    	Proposal prop =null;
+    	try
+		{
+    		prop = this.fetchProposalById(id);
+    		if(prop!=null && prop.getId()!=0)
+    		{
+    		prop.setProposalDocument(proposal.getProposalDocument());
+    		prop.setShpcDocument(proposal.getShpcDocument());
+    		prop.setTotalProposalCost(proposal.getTotalProposalCost());
+    		prop.setTotalCentralShare(proposal.getTotalCentralShare());
+    		prop.setTotalStateShare(proposal.getTotalStateShare());
+    		prop.setTotalOtherShare(proposal.getTotalOtherShare());
+    		prop.setProposalStatus(proposal.getProposalStatus());
+    		prop.setDateLastUpdate(proposal.getDateLastUpdate());
+    		
+    		//proposal.setId(id);
+            proposalRepository.save(prop);
+			
+			return prop;
+    		}
+    		else
+    		{
+    			return prop;
+    		}
+		}
+		catch(Exception e)
+		{
+			System.out.println("#########################     "+e.getMessage());
+			return prop;	
+		}
     }
     
 	@Override
@@ -56,7 +112,8 @@ public class ProposalServiceImpl implements ProposalService {
 		{
 				Proposal proposal = proposalRepository.findById(proposalStatus.getProposalId()).get();
 				
-				if(proposal!=null && proposal.getProposalId()>0)
+				//if(proposal!=null && proposal.getProposalId()>0)
+				if(proposal!=null && proposal.getId()>0)
 				{
 					proposal.setProposalStatus(proposalStatus.getProposalStatus());
 					proposal.setDateLastUpdate(new Date());

@@ -13,7 +13,7 @@ public interface ComponentService {
     public List<Component> addComponentList(Iterable<Component> componentList);
     public Component fetchComponentById(long componentId);
     public List<Component> fetchAllComponent();
-    public void deleteComponentById(long componentId);
+    public String deleteComponentById(long componentId);
     public Component updateComponent(long componentId, Component component);
     public Set<Proposal> filterByComponentType(String componentType);
     public Set<Proposal> filterByBetweenDates(Date fromDate, Date toDate, Set<Proposal> proposals);

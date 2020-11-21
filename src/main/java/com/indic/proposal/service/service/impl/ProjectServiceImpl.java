@@ -28,15 +28,37 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void deleteProjectById(long projectId) {
-        this.fetchProjectById(projectId).setComponent(null);
-        projectRepository.deleteById(projectId);
+    public String deleteProjectById(long projectId) {
+
+    	try
+    	{
+           this.fetchProjectById(projectId).setComponent(null);
+            projectRepository.deleteById(projectId);
+    	  return "success";
+    	}
+    	catch(Exception e)
+    	{
+    		return "deletion_error";	
+    	}
     }
 
     @Override
     public Project updateProject(long projectId, Project project) {
+    	
+    	try
+    	{
+    	
+    	Project p = this.fetchProjectById(projectId);
+    	
         project.setProjectId(projectId);
-        project.setComponent(this.fetchProjectById(projectId).getComponent());
+       // project.setComponent(this.fetchProjectById(projectId).getComponent());
+        project.setDateCreated(p.getDateCreated());
+        project.setComponent(p.getComponent());
         return projectRepository.save(project);
+    	}
+    	catch(Exception e)
+    	{
+    		return null;
+    	}
     }
 }

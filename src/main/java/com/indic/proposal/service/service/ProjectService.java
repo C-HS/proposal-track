@@ -8,6 +8,6 @@ public interface ProjectService {
     public Project addProject(Project project);
     public Project fetchProjectById(long projectId);
     public List<Project> fetchAllProject();
-    public void deleteProjectById(long projectId);
+    public String deleteProjectById(long projectId);
     public Project updateProject(long projectId, Project project);
 }

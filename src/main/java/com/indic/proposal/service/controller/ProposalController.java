@@ -5,6 +5,8 @@ import java.util.*;
 
 import com.indic.proposal.service.model.Project;
 import com.indic.proposal.service.response.ProposalResponse;
+import com.indic.proposal.service.response.StatusResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,22 +51,77 @@ public class ProposalController {
     	return ResponseEntity.ok(projectService.fetchAllProject());
 	}
     @PostMapping(value = "/addProposal", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Proposal> addProposal(@RequestBody Proposal proposal){
-    	proposal.setDateReceive(new Date());
-        return ResponseEntity.ok(proposalService.addProposal(proposal));
+    public ResponseEntity<StatusResponse> addProposal(@RequestBody Proposal proposal){
+    	proposal.setDateOfSubmission(new Date());
+    	proposal.setDateLastUpdate(new Date());
+    	proposal.setAmountApprove("0.0");
+    	proposal.setProposalStatus("SUBMITTED");
+       // return ResponseEntity.ok(proposalService.addProposal(proposal));
+    	
+    	String str = proposalService.addProposal(proposal);
+    	StatusResponse resp = new StatusResponse();
+         if("success".equals(str))
+         {
+        	resp.setMessage("CREATED");
+         	resp.setStatus("SUCCESS");
+         }
+         else
+         {
+            resp.setMessage(str);
+          	resp.setStatus("FAIL");
+         }
+    	 return ResponseEntity.ok(resp);
     }
-    @PutMapping(value = "/updateProposal/{proposalId}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Proposal> updateProposal(@PathVariable Long proposalId, @RequestBody Proposal proposal){
-    	proposal.setDateReceive(new Date());
-        return ResponseEntity.ok(proposalService.updateProposal(proposalId, proposal));
+    
+    @GetMapping(value = "/getProposal/{id}")
+	public ResponseEntity<Proposal> getProposal(@PathVariable Long id){
+    	
+    	Proposal p = null;
+    	try
+    	{
+    		p =proposalService.fetchProposalById(id);
+    	}
+    	catch(Exception e)
+    	{
+    		System.out.println("Exception  "+e.getMessage());
+    	}
+    
+         return ResponseEntity.ok(p);
+	}
+    
+    @PutMapping(value = "/updateProposal/{id}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Proposal> updateProposal(@PathVariable Long id, @RequestBody Proposal proposal){
+    	proposal.setDateLastUpdate(new Date());
+         return ResponseEntity.ok(proposalService.updateProposal(id, proposal));
+    	
+        //return ResponseEntity.ok(proposalService.updateProposal(proposalId, proposal));
     }
-    @DeleteMapping(value = "/deleteProposal/{proposalId}")
-	public ResponseEntity<String> deleteProposal(@PathVariable Long proposalId){
-    	proposalService.deleteProposalById(proposalId);
-    	return ResponseEntity.ok("Proposal Deleted : " + proposalId);
+    @DeleteMapping(value = "/deleteProposal/{id}")
+	public ResponseEntity<StatusResponse> deleteProposal(@PathVariable Long id){
+    	
+    	String str = proposalService.deleteProposalById(id);
+    	StatusResponse resp = new StatusResponse();
+         if("success".equals(str))
+         {
+        	resp.setMessage("DELETED");
+         	resp.setStatus("SUCCESS");
+         }
+         else
+         {
+            resp.setMessage(str);
+          	resp.setStatus("FAIL");
+         }
+         return ResponseEntity.ok(resp);
+    	
+    	//proposalService.deleteProposalById(proposalId);
+    	//return ResponseEntity.ok("Proposal Deleted : " + proposalId);
 	}
 	@PostMapping(value = "/addComponents/{proposalId}", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Component> addComponents(@PathVariable long proposalId, @RequestBody Component component){
+		
+		component.setDateCreated(new Date());
+		component.setDateLastUpdate(new Date());
+		
 		Proposal prop = proposalService.fetchProposalById(proposalId);
 		prop.addComponent(component);
 		componentService.addComponent(component);
@@ -74,25 +131,89 @@ public class ProposalController {
 	@PostMapping(value = "/addProject/{componentId}", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Project> addProjecct(@PathVariable long componentId, @RequestBody Project project){
 		Component comp = componentService.fetchComponentById(componentId);
+		project.setDateCreated(new Date());
+		project.setDateLastUpdate(new Date());
 		comp.addProject(project);
 		return ResponseEntity.ok(projectService.addProject(project));
 	}
 	@DeleteMapping(value = "/deleteComponent/{componentId}")
-	public ResponseEntity<String> deleteComponent(@PathVariable Long componentId){
-    	componentService.deleteComponentById(componentId);
-    	return ResponseEntity.ok("Deleted Component : " + componentId);
+	public ResponseEntity<StatusResponse> deleteComponent(@PathVariable Long componentId){
+		
+    	String str = componentService.deleteComponentById(componentId);
+    	StatusResponse resp = new StatusResponse();
+         if("success".equals(str))
+         {
+        	resp.setMessage("DELETED");
+         	resp.setStatus("SUCCESS");
+         }
+         else
+         {
+            resp.setMessage(str);
+          	resp.setStatus("FAIL");
+         }
+         return ResponseEntity.ok(resp);
+		
+			/*
+			 * componentService.deleteComponentById(componentId); return
+			 * ResponseEntity.ok("Deleted Component : " + componentId);
+			 */
 	}
 	@PutMapping(value = "/updateComponent/{componentId}", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Component> updateComponent(@PathVariable Long componentId, @RequestBody Component component){
+		component.setDateLastUpdate(new Date());
     	return ResponseEntity.ok(componentService.updateComponent(componentId, component));
 	}
+	
+    @GetMapping(value = "/getComponentList/{id}")
+	public ResponseEntity<Set<Component>> getComponentList(@PathVariable Long id){
+    	
+    	Proposal p =null;
+
+    	try
+    	{
+    		p =proposalService.fetchProposalById(id);
+    	}
+    	catch(Exception e)
+    	{
+    		System.out.println("Exception  "+e.getMessage());
+    	}
+    	
+    	if(p!=null && p.getId()!=0)
+    	{
+    		return ResponseEntity.ok(p.getComponentList());
+    	}
+    	else
+    	{
+    		return ResponseEntity.ok(new HashSet<>());
+    	}
+    
+         
+	}
+	
 	@DeleteMapping(value = "/deleteProject/{projectId}")
-	public ResponseEntity<String> deleteProject(@PathVariable Long projectId){
-    	projectService.deleteProjectById(projectId);
-    	return ResponseEntity.ok("Deleted Project : " + projectId);
+	public ResponseEntity<StatusResponse> deleteProject(@PathVariable Long projectId){
+		/*
+		 * projectService.deleteProjectById(projectId); return
+		 * ResponseEntity.ok("Deleted Project : " + projectId);
+		 */
+    	
+    	String str = projectService.deleteProjectById(projectId);
+    	StatusResponse resp = new StatusResponse();
+         if("success".equals(str))
+         {
+        	resp.setMessage("DELETED");
+         	resp.setStatus("SUCCESS");
+         }
+         else
+         {
+            resp.setMessage(str);
+          	resp.setStatus("FAIL");
+         }
+         return ResponseEntity.ok(resp);
 	}
 	@PutMapping(value = "/updateProject/{projectId}", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Project> updateProject(@PathVariable Long projectId, @RequestBody Project project){
+		project.setDateLastUpdate(new Date());
     	return ResponseEntity.ok(projectService.updateProject(projectId, project));
 	}
 	@PutMapping("/setProposalStatus")

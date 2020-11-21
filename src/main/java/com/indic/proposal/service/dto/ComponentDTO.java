@@ -9,6 +9,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -24,9 +25,12 @@ public class ComponentDTO implements Serializable {
     public String projectCost;
     public String installment;
     public String firstInstallment;
+    public String centralShare;
     public String stateShare;
     public String otherShare;
     public String actionPlanDocument;
+	private Date dateCreated;
+	private Date dateLastUpdate;
     public List<ProjectDTO> projectsDTO = new ArrayList<>();
 //    public ProposalDTO proposalDTO;
 }

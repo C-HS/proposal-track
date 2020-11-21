@@ -5,7 +5,12 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Getter
 @Setter
@@ -20,6 +25,8 @@ public class ProjectDTO implements Serializable {
     public String centralShare;
     public String stateShare;
     public String otherShare;
+	private Date dateCreated;
+	private Date dateLastUpdate;
     public String jsonData;
     public PlantInfoDTO plantInfoDTO;
     public List<SubtypeDTO> subtypeDTOS = new ArrayList<>();

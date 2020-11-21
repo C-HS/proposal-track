@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,13 +41,14 @@ public class Proposal implements Serializable {
     private static final long serialVersionUID = -9057319436314533599L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty("proposalId")
+    @JsonProperty("id")
     @JsonIgnore
-    public Long proposalId;
+    public Long id;
     @JsonProperty("proposalDocument")
     public String proposalDocument;
-    @JsonProperty("proposalName")
-    public String proposalName;
+    @JsonProperty("proposalId")
+	@Column(name = "proposalId", unique=true)
+    public String proposalId;
     @JsonProperty("shpcDocument")
     public String shpcDocument;
     @JsonProperty("totalProposalCost")
@@ -56,9 +59,11 @@ public class Proposal implements Serializable {
     public String totalStateShare;
     @JsonProperty("totalOtherShare")
     public String totalOtherShare;
-	@Column(name = "dateReceive")
+    @JsonProperty("amountApprove")
+    public String amountApprove;
+	@Column(name = "dateOfSubmission")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateReceive;
+	private Date dateOfSubmission;
 	@Column(name = "dateLastUpdate")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateLastUpdate;

@@ -8,11 +8,11 @@ import com.indic.proposal.service.model.Proposal;
 import com.indic.proposal.service.request.ProposalStatus;
 
 public interface ProposalService {
-    public Proposal addProposal(Proposal proposal);
+	public String addProposal(Proposal proposal);
     public Proposal fetchProposalById(long proposalId);
     public List<Proposal> fetchAllProposal();
-    public void deleteProposalById(long proposalId);
-    public Proposal updateProposal(long proposalId, Proposal proposal);
+    public String deleteProposalById(long id);
+    public Proposal updateProposal(long id, Proposal proposal);
     public String setProposalStatus(ProposalStatus proposalStatus);
 
 }
